@@ -13,21 +13,30 @@ weapon = None
 user = None
 frame = 0
 frame_tog = 1
+frame_updater = 8
 x = 0
 y = 0
 
 
 def enter():
     global weapon
-    open_canvas(Framework.Window_W, Framework.Window_H)
+    # open_canvas(Framework.Window_W, Framework.Window_H)
     rssmgr.Upload_data()
     ObjectDate001_Actor.actor = [ObjectDate001_Actor.Actor() for i in range(4)]
     ObjectDate002_Monster.monster = [ObjectDate002_Monster.Monster() for i in range(4)]
     for i in range (0, 4, 1):
         ObjectDate001_Actor.actor[i].position = i
         ObjectDate001_Actor.actor[i].speed = random.randint(5, 10)
+
+    for act in ObjectDate001_Actor.actor:
+        act.position_set()
+
     for i in range(0, 4, 1):
         ObjectDate002_Monster.monster[i].position = i
+
+    for mon in ObjectDate002_Monster.monster:
+        mon.position_set()
+
     weapon = load_image('Resource\\Actor\\Weapons1.png')
 
 
@@ -38,10 +47,14 @@ def exit():
 
 
 def update(frame_time):
-    for act in ObjectDate001_Actor.actor:
-        act.update(frame_time)
-    for mon in ObjectDate002_Monster.monster:
-        mon.update(frame_time)
+    global frame_updater
+    frame_updater += 1
+    if (frame_updater > (Framework.FPS_TIME / 8.0)):
+        for act in ObjectDate001_Actor.actor:
+            act.update(frame_time)
+        for mon in ObjectDate002_Monster.monster:
+            mon.update(frame_time)
+        frame_updater = 0
     Sys_Battle.AcgaugeUpdate()
 
 

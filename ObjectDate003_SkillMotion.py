@@ -15,3 +15,4 @@ class Motion
 
 def Skill_Motion(Actor, left, down, procedure, frame):
     if (left == 12 and down == 15):
+        pass

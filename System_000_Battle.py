@@ -24,8 +24,10 @@ def AcgaugeUpdate():
     who = Whos_turn()
     if (who == 0):
         for i in range(0, 4, 1):
-            ojd_Actor.actor[i].Acgauge += ojd_Actor.actor[i].speed
-            ojd_Monster.monster[i].Acgauge += ojd_Monster.monster[i].speed
+            if ojd_Actor.actor[i].state == 0:
+                ojd_Actor.actor[i].Acgauge += ojd_Actor.actor[i].speed
+            if ojd_Monster.monster[i].state == 0:
+                ojd_Monster.monster[i].Acgauge += ojd_Monster.monster[i].speed
     if (who == 1):
         for i in range(0, 4, 1):
             if (ojd_Actor.actor[i].myturn == 1):
@@ -73,3 +75,28 @@ def Monster_Target_Sel(x, y):
 
 def Skill_Act(left, up):
     pass
+
+def Inpoint(a, x, y):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    if left_a > x:
+        return False
+    if right_a < x:
+        return False
+    if top_a < y:
+        return False
+    if bottom_a > y:
+        return False
+    return True
+
+def collide(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb()
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+    return True

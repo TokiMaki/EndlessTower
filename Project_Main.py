@@ -9,5 +9,6 @@ else:
 
 import Project_SceneFrameWork
 import Scene000_Battle
+import Scene001_Gacha
 
-Project_SceneFrameWork.run(Scene000_Battle)
+Project_SceneFrameWork.run(Scene001_Gacha)
