@@ -16,23 +16,31 @@ frame_tog = 1
 frame_updater = 8
 x = 0
 y = 0
+floor = 0
 
 
 def enter():
     global weapon
     # open_canvas(Framework.Window_W, Framework.Window_H)
     rssmgr.Upload_data()
-    ObjectDate001_Actor.actor = [ObjectDate001_Actor.Actor() for i in range(4)]
     ObjectDate002_Monster.monster = [ObjectDate002_Monster.Monster() for i in range(4)]
-    for i in range (0, 4, 1):
-        ObjectDate001_Actor.actor[i].position = i
-        ObjectDate001_Actor.actor[i].speed = random.randint(5, 10)
+    if (ObjectDate001_Actor.hero_num < 4):
+        for i in range (0 ,ObjectDate001_Actor.hero_num, 1):
+            ObjectDate001_Actor.actor.append(ObjectDate001_Actor.hero[i])
+            ObjectDate001_Actor.actor[i].position = i
+            ObjectDate001_Actor.actor[i].speed = random.randint(5, 10)
+    else:
+        for i in range (0 ,4, 1):
+            ObjectDate001_Actor.actor.append(ObjectDate001_Actor.hero[i])
+            ObjectDate001_Actor.actor[i].position = i
+            ObjectDate001_Actor.actor[i].speed = random.randint(5, 10)
 
     for act in ObjectDate001_Actor.actor:
         act.position_set()
 
     for i in range(0, 4, 1):
         ObjectDate002_Monster.monster[i].position = i
+        ObjectDate002_Monster.monster[i].speed = random.randint(5, 10)
 
     for mon in ObjectDate002_Monster.monster:
         mon.position_set()
@@ -41,8 +49,6 @@ def enter():
 
 
 def exit():
-    global actor
-    actor = None
     close_canvas()
 
 
@@ -80,14 +86,14 @@ def handle_events(frame_time):
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
+            exit()
             Framework.running = False
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
+            exit()
             Framework.running = False
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             x = event.x
             y = Framework.Window_H - event.y
-            print("%d %d", x, y)
-    pass
 
 
 def pause(): pass

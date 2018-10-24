@@ -1,20 +1,22 @@
 import Project_SceneFrameWork as FrameWork
 import Scene000_Battle as Scn_Battle
-import ObjectDate001_Actor as ojd_Actor
-import ObjectDate002_Monster as ojd_Monster
+import ObjectDate001_Actor as obj_Actor
+import ObjectDate002_Monster as obj_Monster
+import random
 
 who = 0
 Sel_Skill = 0
 Sel_Monster = None
+agro = 0
 
 def Whos_turn():
-    for i in range(0, 4, 1):
-        if (ojd_Actor.actor[i].Acgauge >= 100):
-            ojd_Actor.actor[i].myturn = 1
+    for i in range(0, obj_Actor.hero_num, 1):
+        if (obj_Actor.actor[i].Acgauge >= 100):
+            obj_Actor.actor[i].myturn = 1
             return 1
     for i in range(0, 4, 1):
-        if (ojd_Monster.monster[i].Acgauge >= 100):
-            ojd_Monster.monster[i].myturn = 1
+        if (obj_Monster.monster[i].Acgauge >= 100):
+            obj_Monster.monster[i].myturn = 1
             return 1
     return 0
 
@@ -23,28 +25,51 @@ def AcgaugeUpdate():
     global who, Sel_Skill, Sel_Monster
     who = Whos_turn()
     if (who == 0):
-        for i in range(0, 4, 1):
-            if ojd_Actor.actor[i].state == 0:
-                ojd_Actor.actor[i].Acgauge += ojd_Actor.actor[i].speed
-            if ojd_Monster.monster[i].state == 0:
-                ojd_Monster.monster[i].Acgauge += ojd_Monster.monster[i].speed
+        for i in range(0, obj_Actor.hero_num, 1):
+            if obj_Actor.actor[i].state == 0:
+                obj_Actor.actor[i].Acgauge += obj_Actor.actor[i].speed
+            if obj_Monster.monster[i].state == 0:
+                obj_Monster.monster[i].Acgauge += obj_Monster.monster[i].speed
     if (who == 1):
+        for i in range(0, obj_Actor.hero_num, 1):
+            if (obj_Actor.actor[i].myturn == 1):
+                ActorAction(obj_Actor.actor[i])
         for i in range(0, 4, 1):
-            if (ojd_Actor.actor[i].myturn == 1):
-                ActorAction(ojd_Actor.actor[i])
+            if (obj_Monster.monster[i].myturn == 1):
+                MonsterAction(obj_Monster.monster[i])
 
 def ActorAction(Actor):
     global Sel_Skill, Sel_Monster
     Sel_Skill = Skill_Sel(Scn_Battle.x, Scn_Battle.y, Sel_Skill)
     Sel_Monster = Monster_Target_Sel(Scn_Battle.x, Scn_Battle.y)
-    if (Sel_Monster != None):
-        ojd_Monster.monster[Sel_Monster].hp -= Actor.atk
-        print(str(Sel_Monster) + "몬스터의 체력 : " + str(ojd_Monster.monster[Sel_Monster].hp))
+    if (Sel_Monster != None and obj_Monster.monster[Sel_Monster].state != 1):
+        obj_Monster.monster[Sel_Monster].hp -= Actor.atk
+        print(str(Sel_Monster) + "몬스터의 체력 : " + str(obj_Monster.monster[Sel_Monster].hp))
         Actor.myturn = 0
         Actor.Acgauge = 0
         Sel_Skill = 0
         Sel_Monster = None
 
+def MonsterAction(Monster):
+    global agro
+    while (True):
+        temp = plat_lotto()
+        if 0 <= temp and temp <= 40:
+            agro = 0
+        elif 40 <= temp and temp <= 65:
+            agro = 1
+        elif 65 <= temp and temp <= 90:
+            agro = 2
+        elif 90 <= temp and temp <= 100:
+            agro = 3
+        if (agro < obj_Actor.hero_num):
+            if (obj_Actor.actor[agro].state == 0):
+                break
+    if (obj_Actor.actor[agro].state == 0):
+        obj_Actor.actor[agro].hp -= Monster.atk
+        print(str(agro) + "플레이어의 체력 : " + str(obj_Actor.actor[agro].hp))
+        Monster.myturn = 0
+        Monster.Acgauge = 0
 
 def Skill_Sel(x, y, Sel_Skill):
     if (FrameWork.Window_W - (64 * 3) - 32 <= x and FrameWork.Window_W - (64 * 3) + 32 >= x and 64 - 32 <= y and 64 + 32 >= y):
@@ -75,6 +100,10 @@ def Monster_Target_Sel(x, y):
 
 def Skill_Act(left, up):
     pass
+
+def plat_lotto():
+    num = random.randint(0, 100)
+    return num
 
 def Inpoint(a, x, y):
     left_a, bottom_a, right_a, top_a = a.get_bb()

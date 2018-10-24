@@ -4,7 +4,8 @@ import Resource_Manager as rssmgr
 import System_000_Battle as Sys_Battle
 
 hero = []
-actor = None
+hero_num = 0
+actor = []
 
 class Actor:
     def __init__(self):
@@ -15,20 +16,27 @@ class Actor:
         self.dir = 1
         self.position = 0
         self.skill = [Skill() for i in range(3)]
+
         self.Acgauge = 0;
         self.speed = 0;
+
         self.myturn = 0
-        self.state = 0      # 0은 죽음 1은 생존
+        self.state = 0      # 0은 생존 1은 죽음
         self.grade = 0
         self.job = 0    # 0은 전사 1은 도적 2는 마법사 3은 성직자
+        self.hp = 0
+        self.atk = 0
+
         self.actor_num = 0
         self.actor_in_num = 0
+
         self.skill[0].kind = 0
         self.skill[1].kind = 1
         self.skill[2].kind = 2
-        self.atk = 50
 
     def update(self, frame_time):
+        if (self.hp <= 0):
+            self.state = 1
         self.frame = (self.frame + self.framebool)
         if (self.frame >= 2):
             self.framebool = -1
@@ -50,7 +58,10 @@ class Actor:
             self.y = Project_SceneFrameWork.Window_H / 2
 
     def draw(self):
-            rssmgr.Actor1.image.clip_draw(64 * self.frame, 320 - 64 * 0, 64, 64, self.x, self.y)
+        if (self.state == 0):
+            rssmgr.Actor1[self.actor_in_num].image.clip_draw(64 * self.frame, 320 - 64 * 0, 64, 64, self.x, self.y)
+        if (self.state == 1):
+            rssmgr.Actor1[self.actor_in_num].image.clip_draw(64 * self.frame + (64 * 6), 320 - 64 * 5, 64, 64, self.x, self.y)
 
 class Skill:
     def __init__(self):

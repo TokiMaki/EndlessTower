@@ -3,6 +3,7 @@ import ObjectDate001_Actor
 import ObjectDate002_Monster
 from pico2d import *
 import Resource_Manager as rssmgr
+import Scene000_Battle as Sc_Battle
 import Scene002_Newhero as Sc_Newhero
 import System_000_Battle as Sys_Battle
 import random
@@ -52,6 +53,8 @@ def handle_events(frame_time):
             Framework.running = False
         elif event.type == SDL_KEYDOWN and event.key == SDLK_t:
             Framework.push_state(Sc_Newhero)
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
+            Framework.push_state(Sc_Battle)
     pass
 
 
