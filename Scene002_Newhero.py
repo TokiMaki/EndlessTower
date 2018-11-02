@@ -11,7 +11,6 @@ import random
 
 name = "Battle"
 user = None
-frame_updater = 8
 x = 0
 y = 0
 
@@ -22,7 +21,6 @@ framebool = 1
 
 def enter():
     global gachahero
-    Obj_Actor.hero_num += 1
     gachahero = Obj_Actor.Actor()
     gachahero.grade = random.randint(3, 5)
     gachahero.job = 0
@@ -49,14 +47,12 @@ def exit():
 
 
 def update(frame_time):
-    global frame_updater, frame, framebool
-    frame_updater += 1
-    if (frame_updater > (Framework.FPS_TIME / 8.0)):
-        frame += framebool
-        if frame >= 2:
-            framebool *= -1
-        if frame <= 0:
-            framebool *= -1
+    global frame, framebool
+    frame += framebool
+    if frame >= 2:
+        framebool *= -1
+    if frame <= 0:
+        framebool *= -1
         pass
 
 

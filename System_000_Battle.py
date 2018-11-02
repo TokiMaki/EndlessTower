@@ -10,7 +10,7 @@ Sel_Monster = None
 agro = 0
 
 def Whos_turn():
-    for i in range(0, obj_Actor.hero_num, 1):
+    for i in range(0, len(obj_Actor.actor), 1):
         if (obj_Actor.actor[i].Acgauge >= 100):
             obj_Actor.actor[i].myturn = 1
             return 1
@@ -25,13 +25,14 @@ def AcgaugeUpdate():
     global who, Sel_Skill, Sel_Monster
     who = Whos_turn()
     if (who == 0):
-        for i in range(0, obj_Actor.hero_num, 1):
+        for i in range(0, len(obj_Actor.actor), 1):
             if obj_Actor.actor[i].state == 0:
                 obj_Actor.actor[i].Acgauge += obj_Actor.actor[i].speed
+        for i in range(0, len(obj_Monster.monster), 1):
             if obj_Monster.monster[i].state == 0:
                 obj_Monster.monster[i].Acgauge += obj_Monster.monster[i].speed
     if (who == 1):
-        for i in range(0, obj_Actor.hero_num, 1):
+        for i in range(0, len(obj_Actor.actor), 1):
             if (obj_Actor.actor[i].myturn == 1):
                 ActorAction(obj_Actor.actor[i])
         for i in range(0, 4, 1):
@@ -62,7 +63,7 @@ def MonsterAction(Monster):
             agro = 2
         elif 90 <= temp and temp <= 100:
             agro = 3
-        if (agro < obj_Actor.hero_num):
+        if (agro < len(obj_Actor.actor)):
             if (obj_Actor.actor[agro].state == 0):
                 break
     if (obj_Actor.actor[agro].state == 0):

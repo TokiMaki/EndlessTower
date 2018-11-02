@@ -2,10 +2,12 @@ from pico2d import *
 import Project_SceneFrameWork
 import Resource_Manager as rssmgr
 import System_000_Battle as Sys_Battle
+import ObjectDate003_State as Obj_State
 
 hero = []
-hero_num = 0
 actor = []
+play_actor = []
+
 
 class Actor:
     def __init__(self):
@@ -34,14 +36,16 @@ class Actor:
         self.skill[1].kind = 1
         self.skill[2].kind = 2
 
+        self.event_que = []
+        self.cur_state = Obj_State.IdleState
+        self.cur_state.enter(self)
+
     def update(self, frame_time):
-        if (self.hp <= 0):
-            self.state = 1
-        self.frame = (self.frame + self.framebool)
-        if (self.frame >= 2):
-            self.framebool = -1
-        if (self.frame <= 0):
-            self.framebool = 1
+        self.cur_state.do(self)
+        if len(self.event_que) > 0:
+            self.cur_state.exit(self)
+            self.cur_state = self.event_que.pop()
+            self.cur_state.enter(self)
 
     def position_set(self):
         if (self.position == 0):
@@ -58,16 +62,14 @@ class Actor:
             self.y = Project_SceneFrameWork.Window_H / 2
 
     def draw(self):
-        if (self.state == 0):
-            rssmgr.Actor1[self.actor_in_num].image.clip_draw(64 * self.frame, 320 - 64 * 0, 64, 64, self.x, self.y)
-        if (self.state == 1):
-            rssmgr.Actor1[self.actor_in_num].image.clip_draw(64 * self.frame + (64 * 6), 320 - 64 * 5, 64, 64, self.x, self.y)
+        self.cur_state.draw(self)
 
 class Skill:
     def __init__(self):
         self.x, self.y = 0, 0
         self.left_num = 12           # 왼쪽에서부터 몇번째 이미지
         self.updown_num = 15           # 아래에서 위쪽으로 몇번째 이미지
+        self.skillturn = 0
         self.kind = 0
 
     def update(self):
