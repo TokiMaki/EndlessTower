@@ -3,6 +3,8 @@ from pico2d import *
 
 running = None
 stack = None
+frame_time = 0
+current_time = 0
 Window_W = 1024
 Window_H = 768
 FPS_TIME = 30
@@ -88,13 +90,13 @@ def get_frame_time():
     return frame_time
 
 def run(start_state):
-    global running, stack, FPS_TIME
+    global running, stack, FPS_TIME, current_time, frame_time
     running = True
     stack = [start_state]
     start_state.enter()
-    current_time = time.clock()
+    current_time = time.time()
     while (running):
-        frame_time = time.clock() - current_time
+        frame_time = time.time() - current_time
         if (frame_time > 1.0 / FPS_TIME):
             stack[-1].handle_events(frame_time)
             stack[-1].update(frame_time)

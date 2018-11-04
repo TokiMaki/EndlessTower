@@ -26,7 +26,7 @@ class Actor:
         self.state = 0      # 0은 생존 1은 죽음
         self.grade = 0
         self.job = 0    # 0은 전사 1은 도적 2는 마법사 3은 성직자
-        self.hp = 0
+        self.hp = 1
         self.atk = 0
 
         self.actor_num = 0

@@ -24,21 +24,25 @@ def enter():
     gachahero = Obj_Actor.Actor()
     gachahero.grade = random.randint(3, 5)
     gachahero.job = 0
-    gachahero.actor_num = 0
+    gachahero.actor_num = random.randint(0, 2)
     gachahero.actor_in_num = random.randint(0, 7)
     gachahero.job = random.randint(0, 3)
     if (gachahero.job == 0):
         gachahero.hp = random.randint(17, 20)
         gachahero.atk = random.randint(3, 5)
+        gachahero.speed = random.randint(5, 6)
     if (gachahero.job == 1):
         gachahero.hp = random.randint(10, 13)
         gachahero.atk = random.randint(5, 7)
+        gachahero.speed = random.randint(7, 9)
     if (gachahero.job == 2):
         gachahero.hp = random.randint(8, 12)
         gachahero.atk = random.randint(5, 7)
+        gachahero.speed = random.randint(6, 7)
     if (gachahero.job == 3):
         gachahero.hp = random.randint(8, 12)
         gachahero.atk = random.randint(2, 4)
+        gachahero.speed = random.randint(5, 6)
     Obj_Actor.hero.append(gachahero)
 
 

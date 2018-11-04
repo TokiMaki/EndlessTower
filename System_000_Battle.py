@@ -2,6 +2,7 @@ import Project_SceneFrameWork as FrameWork
 import Scene000_Battle as Scn_Battle
 import ObjectDate001_Actor as obj_Actor
 import ObjectDate002_Monster as obj_Monster
+import ObjectDate003_State as obj_State
 import random
 
 who = 0
@@ -26,18 +27,20 @@ def AcgaugeUpdate():
     who = Whos_turn()
     if (who == 0):
         for i in range(0, len(obj_Actor.actor), 1):
-            if obj_Actor.actor[i].state == 0:
+            if obj_Actor.actor[i].state != obj_State.DeadState:
                 obj_Actor.actor[i].Acgauge += obj_Actor.actor[i].speed
         for i in range(0, len(obj_Monster.monster), 1):
-            if obj_Monster.monster[i].state == 0:
+            if obj_Monster.monster[i].state != 1:
                 obj_Monster.monster[i].Acgauge += obj_Monster.monster[i].speed
     if (who == 1):
         for i in range(0, len(obj_Actor.actor), 1):
             if (obj_Actor.actor[i].myturn == 1):
                 ActorAction(obj_Actor.actor[i])
+                print(str(i) + "플레이어의 턴")
         for i in range(0, 4, 1):
             if (obj_Monster.monster[i].myturn == 1):
                 MonsterAction(obj_Monster.monster[i])
+                print(str(i) + "몬스터의 턴")
 
 def ActorAction(Actor):
     global Sel_Skill, Sel_Monster
@@ -64,9 +67,9 @@ def MonsterAction(Monster):
         elif 90 <= temp and temp <= 100:
             agro = 3
         if (agro < len(obj_Actor.actor)):
-            if (obj_Actor.actor[agro].state == 0):
+            if (obj_Actor.actor[agro].state != obj_State.DeadState):
                 break
-    if (obj_Actor.actor[agro].state == 0):
+    if (obj_Actor.actor[agro].state != obj_State.DeadState):
         obj_Actor.actor[agro].hp -= Monster.atk
         print(str(agro) + "플레이어의 체력 : " + str(obj_Actor.actor[agro].hp))
         Monster.myturn = 0
