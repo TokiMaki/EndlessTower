@@ -66,6 +66,7 @@ def draw(frame_time):
                 game_object.skill[i].draw()
 
 
+
     update_canvas()
 
 
@@ -75,10 +76,10 @@ def handle_events(frame_time):
     for event in events:
         if event.type == SDL_QUIT:
             exit()
-            Framework.running = False
+            Framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             exit()
-            Framework.running = False
+            Framework.quit()
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             x = event.x
             y = Framework.Window_H - event.y

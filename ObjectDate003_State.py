@@ -57,6 +57,29 @@ class DeadState:
     def draw(Actor):
         rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + (64 * 6), 320 - 64 * 5, 64, 64, Actor.x, Actor.y)
 
+class VictoryState:
+    @staticmethod
+    def enter(Actor):
+        Actor.frame = 0
+        Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
+
+    @staticmethod
+    def exit(Actor):
+        pass
+
+    @staticmethod
+    def do(Actor):
+        Actor.frame = (Actor.frame + Actor.framebool * Framework.frame_time)
+        if (Actor.frame >= 3):
+            Actor.frame = 2.99
+            Actor.framebool *= -1
+        if (Actor.frame <= 0):
+            Actor.framebool *= -1
+
+    @staticmethod
+    def draw(Actor):
+        rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + (64 * 6), 320 - 64 * 1, 64, 64, Actor.x, Actor.y)
+
 class LobbyState:
     @staticmethod
     def enter(Actor):

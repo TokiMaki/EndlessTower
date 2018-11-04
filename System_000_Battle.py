@@ -9,6 +9,7 @@ who = 0
 Sel_Skill = 0
 Sel_Monster = None
 agro = 0
+Timer = 0
 
 def Whos_turn():
     for i in range(0, len(obj_Actor.actor), 1):
@@ -25,22 +26,28 @@ def Whos_turn():
 def AcgaugeUpdate():
     global who, Sel_Skill, Sel_Monster
     who = Whos_turn()
-    if (who == 0):
-        for i in range(0, len(obj_Actor.actor), 1):
-            if obj_Actor.actor[i].state != obj_State.DeadState:
-                obj_Actor.actor[i].Acgauge += obj_Actor.actor[i].speed
-        for i in range(0, len(obj_Monster.monster), 1):
-            if obj_Monster.monster[i].state != 1:
-                obj_Monster.monster[i].Acgauge += obj_Monster.monster[i].speed
-    if (who == 1):
-        for i in range(0, len(obj_Actor.actor), 1):
-            if (obj_Actor.actor[i].myturn == 1):
-                ActorAction(obj_Actor.actor[i])
-                print(str(i) + "플레이어의 턴")
-        for i in range(0, 4, 1):
-            if (obj_Monster.monster[i].myturn == 1):
-                MonsterAction(obj_Monster.monster[i])
-                print(str(i) + "몬스터의 턴")
+    if (Floor_end() != True):
+        if (who == 0):
+            for i in range(0, len(obj_Actor.actor), 1):
+                if obj_Actor.actor[i].cur_state != obj_State.DeadState:
+                    obj_Actor.actor[i].Acgauge += obj_Actor.actor[i].speed
+            for i in range(0, len(obj_Monster.monster), 1):
+                if obj_Monster.monster[i].cur_state != 1:
+                    obj_Monster.monster[i].Acgauge += obj_Monster.monster[i].speed
+        if (who == 1):
+            for i in range(0, len(obj_Actor.actor), 1):
+                if (obj_Actor.actor[i].myturn == 1):
+                    ActorAction(obj_Actor.actor[i])
+                    print(str(i) + "플레이어의 턴")
+            for i in range(0, 4, 1):
+                if (obj_Monster.monster[i].myturn == 1):
+                    MonsterAction(obj_Monster.monster[i])
+                    print(str(i) + "몬스터의 턴")
+    elif (Floor_end()):
+            for i in range(0, len(obj_Actor.actor), 1):
+                if obj_Actor.actor[i].cur_state != obj_State.DeadState and obj_Actor.actor[i].cur_state != obj_State.VictoryState:
+                    obj_Actor.actor[i].cur_state = obj_State.VictoryState
+
 
 def ActorAction(Actor):
     global Sel_Skill, Sel_Monster
@@ -67,9 +74,9 @@ def MonsterAction(Monster):
         elif 90 <= temp and temp <= 100:
             agro = 3
         if (agro < len(obj_Actor.actor)):
-            if (obj_Actor.actor[agro].state != obj_State.DeadState):
+            if (obj_Actor.actor[agro].cur_state != obj_State.DeadState):
                 break
-    if (obj_Actor.actor[agro].state != obj_State.DeadState):
+    if (obj_Actor.actor[agro].cur_state != obj_State.DeadState):
         obj_Actor.actor[agro].hp -= Monster.atk
         print(str(agro) + "플레이어의 체력 : " + str(obj_Actor.actor[agro].hp))
         Monster.myturn = 0
@@ -132,4 +139,11 @@ def collide(a, b):
         return False
     if bottom_a > top_b:
         return False
+    return True
+
+def Floor_end():
+    for i in range (0, len(obj_Monster.monster), 1):
+        if (obj_Monster.monster[i].state != 1):
+            return False
+
     return True

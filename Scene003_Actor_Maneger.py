@@ -65,10 +65,10 @@ def handle_events(frame_time):
     for event in events:
         if event.type == SDL_QUIT:
             exit()
-            Framework.running = False
+            Framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             exit()
-            Framework.running = False
+            Framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
             Framework.pop_state()
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
@@ -147,6 +147,5 @@ def point_in_Actor(x, y, actor):
 
         actor.position = 3
         Obj_Actor.actor.append(actor)
-
 
     actor.position_set()

@@ -49,9 +49,11 @@ def handle_events(frame_time):
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
-            Framework.running = False
+            exit()
+            Framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            Framework.running = False
+            exit()
+            Framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_t:
             Framework.push_state(Sc_Newhero)
         elif event.type == SDL_KEYDOWN and event.key == SDLK_1:

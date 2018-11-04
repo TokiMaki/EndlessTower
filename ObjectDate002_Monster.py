@@ -18,7 +18,7 @@ class Monster:
 
         self.position = 0
         self.state = 0      # 0은 기본 1은 사망
-        self.hp = 10;
+        self.hp = 0;
         self.atk = 10
         self.speed = 0;
 
