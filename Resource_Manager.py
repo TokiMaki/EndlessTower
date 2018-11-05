@@ -5,9 +5,10 @@ Actor1 = None
 Monster = None
 Skill = None
 Skill_sel = None
+font = None
 
 def Upload_data():
-    global Actor, Actor1, Monster, Skill, Skill_sel
+    global Actor, Actor1, Monster, Skill, Skill_sel, font
     if Actor is None:
         Actor = [Actor1_sound_data() for i in range(3)]
         Actor[0].image = load_image('Resource\\Actor\\Actor1.png')
@@ -56,6 +57,10 @@ def Upload_data():
         Skill_sel = image_data()
         Skill_sel.image = load_image('Resource\\Skill\\skill_sel.png')
 
+    if font is None:
+        font = font_date()
+        font.font = load_font('Resource\\Font\\ENCR10B.TTF', 16)
+
 
 class image_data():
     def __init__(self):
@@ -76,3 +81,7 @@ class Skill_sound_date(image_data):
     def __init__(self):
         super(Skill_sound_date, self).__init__()
         self.sound = None
+
+class font_date():
+    def __init__(self):
+        self.font = None

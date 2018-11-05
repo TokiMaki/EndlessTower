@@ -3,6 +3,7 @@ import ObjectDate001_Actor as Obj_Actor
 import ObjectDate002_Monster
 from pico2d import *
 import Resource_Manager as rssmgr
+import Resource
 import Scene001_Gacha as Sc_Gacha
 import System_000_Battle as Sys_Battle
 import random
@@ -64,6 +65,7 @@ def draw(frame_time):
     global frame, gachahero
     clear_canvas()
     rssmgr.Actor[gachahero.actor_num].image.clip_draw(48 * frame + (48 * 3) * (gachahero.actor_in_num % 4), (48 * 7) - (48 * 4) * int((gachahero.actor_in_num / 4)), 48, 48, Framework.Window_W / 2, Framework.Window_H / 2)
+    rssmgr.font.font.draw(50, 50, '(Gold: %d)' % Resource.Money, (0, 0, 0))
     update_canvas()
 
 

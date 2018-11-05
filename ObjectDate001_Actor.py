@@ -18,6 +18,7 @@ class Actor:
         self.dir = 1
         self.position = 0
         self.skill = [Skill() for i in range(3)]
+        self.mon = False
 
         self.Acgauge = 0;
         self.speed = 0;

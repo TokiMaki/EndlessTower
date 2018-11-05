@@ -32,7 +32,7 @@ def AcgaugeUpdate():
                 if obj_Actor.actor[i].cur_state != obj_State.DeadState:
                     obj_Actor.actor[i].Acgauge += obj_Actor.actor[i].speed
             for i in range(0, len(obj_Monster.monster), 1):
-                if obj_Monster.monster[i].cur_state != 1:
+                if obj_Monster.monster[i].state != 1:
                     obj_Monster.monster[i].Acgauge += obj_Monster.monster[i].speed
         if (who == 1):
             for i in range(0, len(obj_Actor.actor), 1):

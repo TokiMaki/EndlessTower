@@ -6,6 +6,8 @@ import Resource_Manager as rssmgr
 import Scene000_Battle as Sc_Battle
 import Scene002_Newhero as Sc_Newhero
 import Scene003_Actor_Maneger as Sc_Acmgr
+import Resource
+import Resource_Manager
 import System_000_Battle as Sys_Battle
 import random
 
@@ -41,6 +43,7 @@ def draw(frame_time):
     clear_canvas()
     # weapon.clip_draw(96 * frame , 320 - 64 * 5, 96, 64, 100 + 48, 300 + 64)
     # weapon.clip_draw(96 * frame + 96 * 3, 320 - 64 * 5, 96, 64, 100 - 16, 300 + 64)
+    Resource_Manager.font.font.draw(50, 50, '(Gold: %d)' % Resource.Money, (0, 0, 0))
     update_canvas()
 
 
@@ -55,7 +58,9 @@ def handle_events(frame_time):
             exit()
             Framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_t:
-            Framework.push_state(Sc_Newhero)
+            if Resource.Money > 0:
+                Resource.Money -= 1
+                Framework.push_state(Sc_Newhero)
         elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
             Framework.push_state(Sc_Battle)
         elif event.type == SDL_KEYDOWN and event.key == SDLK_2:

@@ -31,6 +31,8 @@ class IdleState:
     @staticmethod
     def draw(Actor):
         rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame), 320 - 64 * 0, 64, 64, Actor.x, Actor.y)
+        if (Actor.myturn == 1):
+            rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Actor.x, Actor.y, 64, 64)
 
 class DeadState:
     @staticmethod

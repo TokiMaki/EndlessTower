@@ -110,6 +110,7 @@ def point_in_Actor(x, y, actor):
             for i in range(0, len(Obj_Actor.actor), 1):
                 if Obj_Actor.actor[i].position == 0 or Obj_Actor.actor[i] == actor:
                     Obj_Actor.actor.remove(Obj_Actor.actor[i])
+                    break
 
         actor.position = 0
         Obj_Actor.actor.append(actor)
@@ -122,6 +123,7 @@ def point_in_Actor(x, y, actor):
             for i in range(0, len(Obj_Actor.actor), 1):
                 if Obj_Actor.actor[i].position == 1 or Obj_Actor.actor[i] == actor:
                     Obj_Actor.actor.remove(Obj_Actor.actor[i])
+                    break
 
         actor.position = 1
         Obj_Actor.actor.append(actor)
@@ -133,6 +135,7 @@ def point_in_Actor(x, y, actor):
             for i in range(0, len(Obj_Actor.actor), 1):
                 if Obj_Actor.actor[i].position == 2 or Obj_Actor.actor[i] == actor:
                     Obj_Actor.actor.remove(Obj_Actor.actor[i])
+                    break
 
         actor.position = 2
         Obj_Actor.actor.append(actor)
@@ -144,6 +147,7 @@ def point_in_Actor(x, y, actor):
             for i in range(0, len(Obj_Actor.actor), 1):
                 if Obj_Actor.actor[i].position == 3 or Obj_Actor.actor[i] == actor:
                     Obj_Actor.actor.remove(Obj_Actor.actor[i])
+                    break
 
         actor.position = 3
         Obj_Actor.actor.append(actor)

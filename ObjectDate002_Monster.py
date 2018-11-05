@@ -15,12 +15,13 @@ class Monster:
         self.Acgauge = 0;
         self.myturn = 0
         self.kind = 0
+        self.mon = True
 
         self.position = 0
         self.state = 0      # 0은 기본 1은 사망
-        self.hp = 0;
-        self.atk = 10
-        self.speed = 0;
+        self.hp = 1
+        self.atk = 1
+        self.speed = 0
 
     def update(self, frame_time):
         self.frame = (self.frame + self.framebool)

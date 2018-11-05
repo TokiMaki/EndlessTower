@@ -61,7 +61,7 @@ def draw(frame_time):
     # weapon.clip_draw(96 * frame + 96 * 3, 320 - 64 * 5, 96, 64, 100 - 16, 300 + 64)
     for game_object in game_world.all_objects():
         game_object.draw()
-        if (game_object.myturn == 1):
+        if (game_object.myturn == 1 and game_object.mon == False):
             for i in range(0, 3, 1):
                 game_object.skill[i].draw()
 
