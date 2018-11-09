@@ -83,6 +83,12 @@ def MonsterAction(Monster):
         Monster.Acgauge = 0
 
 def Skill_Sel(x, y, Sel_Skill):
+    for act in obj_Actor.actor:
+        for i in range(0, 3):
+            if Inpoint(act.skill[i], x, y):
+                return act.skill[i].kind
+    return Sel_Skill
+    '''
     if (FrameWork.Window_W - (64 * 3) - 32 <= x and FrameWork.Window_W - (64 * 3) + 32 >= x and 64 - 32 <= y and 64 + 32 >= y):
         return 0
     if (FrameWork.Window_W - (64 * 2) - 32 <= x and FrameWork.Window_W - (64 * 2) + 32 >= x and 64 - 32 <= y and 64 + 32 >= y):
@@ -90,8 +96,13 @@ def Skill_Sel(x, y, Sel_Skill):
     if (FrameWork.Window_W - (64 * 1) - 32 <= x and FrameWork.Window_W - (64 * 1) + 32 >= x and 64 - 32 <= y and 64 + 32 >= y):
         return 2
     return Sel_Skill
+    '''
 
 def Monster_Target_Sel(x, y):
+    for mon in obj_Monster.monster:
+        if Inpoint(mon, x, y):
+            return mon.position
+        '''
     if (350 - 32 <= x and 350 + 32 >= x and FrameWork.Window_H / 2 - 32 <= y and FrameWork.Window_H / 2 + 32 >= y):
         Scn_Battle.x = 0
         Scn_Battle.y = 0
@@ -108,6 +119,7 @@ def Monster_Target_Sel(x, y):
         Scn_Battle.x = 0
         Scn_Battle.y = 0
         return 3
+        '''
 
 def Skill_Act(left, up):
     pass

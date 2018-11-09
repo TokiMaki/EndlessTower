@@ -76,6 +76,9 @@ class Skill:
     def update(self):
         pass
 
+    def get_bb(self):
+        return Project_SceneFrameWork.Window_W - (64 * (3 - self.kind)) - 32, 64 - 32, Project_SceneFrameWork.Window_W - (64 * (3 - self.kind)) + 32, 64 + 32
+
     def draw(self):
         if (self.kind == 0):
             rssmgr.Skill.image.clip_draw(32 * self.left_num, 32 * self.updown_num, 32, 32, Project_SceneFrameWork.Window_W - (64 * 3), 64, 64, 64)
