@@ -6,9 +6,11 @@ Monster = None
 Skill = None
 Skill_sel = None
 font = None
+battle_background = None
+actor_maneger_background = None
 
 def Upload_data():
-    global Actor, Actor1, Monster, Skill, Skill_sel, font
+    global Actor, Actor1, Monster, Skill, Skill_sel, font, battle_background, actor_maneger_background
     if Actor is None:
         Actor = [Actor1_sound_data() for i in range(3)]
         Actor[0].image = load_image('Resource\\Actor\\Actor1.png')
@@ -50,22 +52,34 @@ def Upload_data():
         Monster = [Monster_sound_data() for i in range(2)]
         Monster[0].image = load_image('Resource\\Monster\\Monster.png')
         Monster[1].image = load_image('Resource\\Monster\\Damage3.png')
+
+    if battle_background is None:
+        battle_background = [image_data() for i in range(3)]
+        battle_background[0].image = load_image('Resource\\background\\Cobblestones3.png')
+        battle_background[1].image = load_image('Resource\\background\\Cobblestones4.png')
+        battle_background[2].image = load_image('Resource\\background\\Cobblestones5.png')
+
+    if actor_maneger_background is None:
+        actor_maneger_background = [image_data() for i in range(2)]
+        actor_maneger_background[0].image = load_image('Resource\\background\\Castle1.png')
+        actor_maneger_background[1].image = load_image('Resource\\background\\Town5.png')
+
     if Skill is None:
         Skill = Skill_sound_date()
         Skill.image = load_image('Resource\\Skill\\IconSet.png')
+
     if Skill_sel is None:
         Skill_sel = image_data()
         Skill_sel.image = load_image('Resource\\Skill\\skill_sel.png')
 
     if font is None:
         font = font_date()
-        font.font = load_font('Resource\\Font\\ENCR10B.TTF', 16)
+        font.font = load_font('Resource\\Font\\malgunbd.TTF', 16)
 
 
 class image_data():
     def __init__(self):
         self.image = None
-
 
 class Actor1_sound_data(image_data):
     def __init__(self):

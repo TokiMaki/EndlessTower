@@ -1,6 +1,7 @@
 from pico2d import *
 import ObjectDate001_Actor as Obj_Actor
 import ObjectDate003_State as Obj_State
+import ObjectDate004_Background as Obj_Background
 import game_world
 import Project_SceneFrameWork as Framework
 import Resource_Manager as rssmgr
@@ -13,6 +14,9 @@ def enter():
     for i in range(0, len(Obj_Actor.hero), 1):
         game_world.add_object(Obj_Actor.hero[i], 1)
 
+    background = Obj_Background.Background(1)
+    game_world.add_object(background, 0)
+
 
 
 def exit():
@@ -21,6 +25,7 @@ def exit():
 
 def update(frame_time):
     global x, y, sel
+
     for game_object in game_world.all_objects():
         game_object.update(frame_time)
 
@@ -33,6 +38,10 @@ def update(frame_time):
 def draw(frame_time):
     global sel
     clear_canvas()
+
+    for game_object in game_world.background_objects():
+        game_object.draw()
+
     if (len(Obj_Actor.hero) - 10 * space >= 10):
         for i in range(0 + space * 10, 0 + space * 10 + 10, 1):
             rssmgr.Actor[Obj_Actor.hero[i].actor_num].image.clip_draw(48 * int(Obj_Actor.hero[i].frame) + (48 * 3) * (Obj_Actor.hero[i].actor_in_num % 4),

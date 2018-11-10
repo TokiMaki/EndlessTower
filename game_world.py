@@ -15,6 +15,7 @@ def remove_object(o):
         if o in objects[i]:
             objects[i].remove(o)
             del o
+            break;
 
 
 def clear():
@@ -28,6 +29,12 @@ def clear():
 def all_objects():
     global objects
     for i in range(len(objects)):
+        for o in objects[i]:
+            yield o
+
+def background_objects():
+    global objects
+    for i in range(len(objects[0])):
         for o in objects[i]:
             yield o
 

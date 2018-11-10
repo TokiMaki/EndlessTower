@@ -15,7 +15,6 @@ class Monster:
         self.Acgauge = 0;
         self.myturn = 0
         self.kind = 0
-        self.mon = True
 
         self.position = 0
         self.state = 0      # 0은 기본 1은 사망

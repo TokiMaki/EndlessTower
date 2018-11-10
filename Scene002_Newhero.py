@@ -1,6 +1,7 @@
 import Project_SceneFrameWork as Framework
 import ObjectDate001_Actor as Obj_Actor
 import ObjectDate002_Monster
+import ObjectDate003_State as Obj_State
 from pico2d import *
 import Resource_Manager as rssmgr
 import Resource
@@ -17,7 +18,7 @@ y = 0
 
 gachahero = None
 frame = 0
-framebool = 1
+framebool = Obj_State.FRAMES_PER_ACTION * Obj_State.ACTION_PER_TIME
 
 
 def enter():
@@ -53,19 +54,24 @@ def exit():
 
 def update(frame_time):
     global frame, framebool
-    frame += framebool
-    if frame >= 2:
-        framebool *= -1
-    if frame <= 0:
-        framebool *= -1
-        pass
+    frame += (framebool * Framework.frame_time)
+    if (frame >= 3):
+        frame = 2.99
+        framebool = -Obj_State.FRAMES_PER_ACTION * Obj_State.ACTION_PER_TIME
+    if (frame <= 0):
+        framebool = Obj_State.FRAMES_PER_ACTION * Obj_State.ACTION_PER_TIME
+    pass
 
 
 def draw(frame_time):
     global frame, gachahero
     clear_canvas()
-    rssmgr.Actor[gachahero.actor_num].image.clip_draw(48 * frame + (48 * 3) * (gachahero.actor_in_num % 4), (48 * 7) - (48 * 4) * int((gachahero.actor_in_num / 4)), 48, 48, Framework.Window_W / 2, Framework.Window_H / 2)
+    rssmgr.Actor[gachahero.actor_num].image.clip_draw(48 * int(frame) + (48 * 3) * (gachahero.actor_in_num % 4), (48 * 7) - (48 * 4) * int((gachahero.actor_in_num / 4)), 48, 48, Framework.Window_W / 4, Framework.Window_H / 2, 64, 64)
     rssmgr.font.font.draw(50, 50, '(Gold: %d)' % Resource.Money, (0, 0, 0))
+    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 0, '체력: %d' % gachahero.hp, (0, 0, 0))
+    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 1, '공격력: %d' % gachahero.atk, (0, 0, 0))
+    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 2, '속도: %d' % gachahero.speed, (0, 0, 0))
+    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: %d' % gachahero.job, (0, 0, 0))
     update_canvas()
 
 

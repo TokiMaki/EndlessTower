@@ -1,6 +1,7 @@
 import Project_SceneFrameWork as Framework
 import ObjectDate001_Actor
 import ObjectDate002_Monster
+import ObjectDate004_Background as Obj_Background
 from pico2d import *
 import Resource_Manager as rssmgr
 import System_000_Battle as Sys_Battle
@@ -40,6 +41,9 @@ def enter():
     for mon in ObjectDate002_Monster.monster:
         mon.position_set()
 
+    background = Obj_Background.Background(0)
+    game_world.add_object(background, 0)
+
 
     weapon = load_image('Resource\\Actor\\Weapons1.png')
 
@@ -61,11 +65,6 @@ def draw(frame_time):
     # weapon.clip_draw(96 * frame + 96 * 3, 320 - 64 * 5, 96, 64, 100 - 16, 300 + 64)
     for game_object in game_world.all_objects():
         game_object.draw()
-        if (game_object.myturn == 1 and game_object.mon == False):
-            for i in range(0, 3, 1):
-                game_object.skill[i].draw()
-
-
 
     update_canvas()
 
