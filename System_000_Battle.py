@@ -128,6 +128,9 @@ def plat_lotto():
     num = random.randint(0, 100)
     return num
 
+
+
+
 def Inpoint(a, x, y):
     left_a, bottom_a, right_a, top_a = a.get_bb()
     if left_a > x:

@@ -1,6 +1,5 @@
 import Project_SceneFrameWork as Framework
 import ObjectDate001_Actor as Obj_Actor
-import ObjectDate002_Monster
 import ObjectDate003_State as Obj_State
 from pico2d import *
 import Resource_Manager as rssmgr
@@ -18,11 +17,13 @@ y = 0
 
 gachahero = None
 frame = 0
+
 framebool = Obj_State.FRAMES_PER_ACTION * Obj_State.ACTION_PER_TIME
 
 
 def enter():
     global gachahero
+    Sys_Battle.Sel_Skill = 4
     gachahero = Obj_Actor.Actor()
     gachahero.grade = random.randint(3, 5)
     gachahero.job = 0
@@ -72,6 +73,8 @@ def draw(frame_time):
     rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 1, '공격력: %d' % gachahero.atk, (0, 0, 0))
     rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 2, '속도: %d' % gachahero.speed, (0, 0, 0))
     rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: %d' % gachahero.job, (0, 0, 0))
+    for i in range(0, 3):
+        gachahero.skill[i].draw()
     update_canvas()
 
 

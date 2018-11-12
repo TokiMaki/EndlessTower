@@ -3,9 +3,9 @@ import ObjectDate001_Actor as Obj_Actort
 import Resource_Manager as rssmgr
 import Project_SceneFrameWork as Framework
 
-TIME_PER_ACTION = 0.5
-ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-FRAMES_PER_ACTION = 4
+TIME_PER_ACTION = 0.5       # 초당 0.5장
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION     # 1초에 2개
+FRAMES_PER_ACTION = 4   # 총 4장
 
 class IdleState:
     @staticmethod

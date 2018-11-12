@@ -47,6 +47,9 @@ class Actor:
             self.cur_state = self.event_que.pop()
             self.cur_state.enter(self)
 
+    def return_myturn(self):
+        return self.myturn
+
     def position_set(self):
         if (self.position == 0):
             self.x = 650
@@ -67,7 +70,7 @@ class Actor:
             for i in range(0, 3):
                 self.skill[i].draw()
 
-class Skill:
+class Skill(Actor):
     def __init__(self):
         self.x, self.y = 0, 0
         self.left_num = 12           # 왼쪽에서부터 몇번째 이미지
@@ -85,18 +88,18 @@ class Skill:
         if (self.kind == 0):
             rssmgr.Skill.image.clip_draw(32 * self.left_num, 32 * self.updown_num, 32, 32,
                                          Project_SceneFrameWork.Window_W - (64 * 3), 64, 64, 64)
-            if (Sys_Battle.Sel_Skill == 0):
-                rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 3), 64, 64,
-                                                 64)
         if (self.kind == 1):
             rssmgr.Skill.image.clip_draw(32 * self.left_num, 32 * self.updown_num, 32, 32,
                                          Project_SceneFrameWork.Window_W - (64 * 2), 64, 64, 64)
-            if (Sys_Battle.Sel_Skill == 1):
-                rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 2), 64, 64,
-                                                 64)
         if (self.kind == 2):
             rssmgr.Skill.image.clip_draw(32 * self.left_num, 32 * self.updown_num, 32, 32,
                                          Project_SceneFrameWork.Window_W - (64 * 1), 64, 64, 64)
-            if (Sys_Battle.Sel_Skill == 2):
-                rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 1), 64, 64,
-                                                 64)
+        if (Sys_Battle.Sel_Skill == 0):
+            rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 3), 64, 64,
+                                             64)
+        if (Sys_Battle.Sel_Skill == 1):
+            rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 2), 64, 64,
+                                             64)
+        if (Sys_Battle.Sel_Skill == 2):
+            rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 1), 64, 64,
+                                             64)
