@@ -16,10 +16,11 @@ class Actor:
         self.frame = 0
         self.framebool = 1
         self.actframe = 0
+        self.target = None
         self.next_act_frame = 0
         self.dir = 1
         self.position = 0
-        self.skill = [Skill() for i in range(3)]
+        self.skill = [Skill() for i in range(2)]
 
         self.Acgauge = 0
         self.speed = 0
@@ -36,7 +37,6 @@ class Actor:
 
         self.skill[0].kind = 0
         self.skill[1].kind = 1
-        self.skill[2].kind = 2
 
         self.event_que = []
         self.cur_state = Obj_State.IdleState
@@ -72,13 +72,13 @@ class Actor:
             for i in range(0, 3):
                 self.skill[i].draw()
 
-class Skill(Actor):
-    def __init__(self):
+class Skill():
+    def __init__(self, kind = 0, left = 0, updown = 0):
         self.x, self.y = 0, 0
-        self.left_num = 12           # 왼쪽에서부터 몇번째 이미지
-        self.updown_num = 15           # 아래에서 위쪽으로 몇번째 이미지
+        self.kind = kind
+        self.left_num = left           # 왼쪽에서부터 몇번째 이미지
+        self.updown_num = updown           # 아래에서 위쪽으로 몇번째 이미지
         self.skillturn = 0
-        self.kind = 0
 
     def update(self):
         pass

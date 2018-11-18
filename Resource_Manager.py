@@ -9,9 +9,11 @@ Skill_sel = None
 font = None
 battle_background = None
 actor_maneger_background = None
+Effect = None
 
 def Upload_data():
-    global Actor, Actor1, Monster, Skill, Skill_sel, font, battle_background, actor_maneger_background, Weapon
+    global Actor, Actor1, Monster, Skill, Skill_sel, font, battle_background, \
+        actor_maneger_background, Weapon, Effect
     if Actor is None:
         Actor = [Actor1_sound_data() for i in range(3)]
         Actor[0].image = load_image('Resource\\Actor\\Actor1.png')
@@ -50,8 +52,13 @@ def Upload_data():
         Actor1[2][7].image = load_image('Resource\\Actor\\Actor4_8.png')
 
     if Weapon is None:
-        Weapon = Weapon_sound_data()
-        Weapon.image = load_image('Resource\\Actor\\Weapons1.png')
+        Weapon = [Weapon_sound_data() for i in range(2)]
+        Weapon[0].image = load_image('Resource\\Actor\\Weapons1.png')
+        Weapon[1].image = load_image('Resource\\Actor\\Weapons2.png')
+
+    if Effect is None:
+        Effect = [Effect_sound_data() for i in range(1)]
+        Effect[0].image = load_image('Resource\\Effect\\Hit1.png')
 
     if Monster is None:
         Monster = [Monster_sound_data() for i in range(2)]
@@ -104,6 +111,12 @@ class Skill_sound_date(image_data):
 class Weapon_sound_data(image_data):
     def __init__(self):
         super(Weapon_sound_data, self).__init__()
+        self.sound = None
+
+
+class Effect_sound_data(image_data):
+    def __init__(self):
+        super(Effect_sound_data, self).__init__()
         self.sound = None
 
 class font_date():

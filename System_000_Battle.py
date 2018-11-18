@@ -54,8 +54,10 @@ def ActorAction(Actor):
     Sel_Skill = Skill_Sel(Scn_Battle.x, Scn_Battle.y, Sel_Skill)
     Sel_Monster = Monster_Target_Sel(Scn_Battle.x, Scn_Battle.y)
     if (Sel_Monster != None and obj_Monster.monster[Sel_Monster].state != 1):
-        if (Actor.cur_state != obj_State.AttackState):
-            Actor.event_que.append(obj_State.AttackState)
+        #if (Actor.cur_state != obj_State.BasicAttackState):
+        if(Actor.cur_state != obj_State.MagicState):
+            Actor.target = Sel_Monster
+            Actor.event_que.append(obj_State.MagicState)
         '''
         obj_Monster.monster[Sel_Monster].hp -= Actor.atk
         print(str(Sel_Monster) + "몬스터의 체력 : " + str(obj_Monster.monster[Sel_Monster].hp))

@@ -25,6 +25,12 @@ def enter():
     # open_canvas(Framework.Window_W, Framework.Window_H)
     rssmgr.Upload_data()
     ObjectDate002_Monster.monster = [ObjectDate002_Monster.Monster() for i in range(4)]
+
+    for i in range(0, 4, 1):
+        ObjectDate002_Monster.monster[i].position = i
+        ObjectDate002_Monster.monster[i].speed = random.randint(5, 10)
+        game_world.add_object(ObjectDate002_Monster.monster[i], 1)
+
     for i in range (0 ,len(ObjectDate001_Actor.actor), 1):
             ObjectDate001_Actor.actor[i].Acgauge = 0
             game_world.add_object(ObjectDate001_Actor.actor[i], 1)
@@ -33,10 +39,6 @@ def enter():
         act.position_set()
 
 
-    for i in range(0, 4, 1):
-        ObjectDate002_Monster.monster[i].position = i
-        ObjectDate002_Monster.monster[i].speed = random.randint(5, 10)
-        game_world.add_object(ObjectDate002_Monster.monster[i], 1)
 
     for mon in ObjectDate002_Monster.monster:
         mon.position_set()
