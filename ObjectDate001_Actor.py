@@ -15,12 +15,14 @@ class Actor:
         self.motionstate = 0
         self.frame = 0
         self.framebool = 1
+        self.actframe = 0
+        self.next_act_frame = 0
         self.dir = 1
         self.position = 0
         self.skill = [Skill() for i in range(3)]
 
-        self.Acgauge = 0;
-        self.speed = 0;
+        self.Acgauge = 0
+        self.speed = 0
 
         self.myturn = 0
         self.state = 0      # 0은 생존 1은 죽음

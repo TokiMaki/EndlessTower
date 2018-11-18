@@ -44,8 +44,7 @@ def enter():
     background = Obj_Background.Background(0)
     game_world.add_object(background, 0)
 
-
-    weapon = load_image('Resource\\Actor\\Weapons1.png')
+    Sys_Battle.Sel_Skill = 0
 
 
 def exit():

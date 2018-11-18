@@ -29,7 +29,7 @@ def AcgaugeUpdate():
     if (Floor_end() != True):
         if (who == 0):
             for i in range(0, len(obj_Actor.actor), 1):
-                if obj_Actor.actor[i].cur_state != obj_State.DeadState:
+                if obj_Actor.actor[i].cur_state == obj_State.IdleState:
                     obj_Actor.actor[i].Acgauge += obj_Actor.actor[i].speed
             for i in range(0, len(obj_Monster.monster), 1):
                 if obj_Monster.monster[i].state != 1:
@@ -54,12 +54,16 @@ def ActorAction(Actor):
     Sel_Skill = Skill_Sel(Scn_Battle.x, Scn_Battle.y, Sel_Skill)
     Sel_Monster = Monster_Target_Sel(Scn_Battle.x, Scn_Battle.y)
     if (Sel_Monster != None and obj_Monster.monster[Sel_Monster].state != 1):
+        if (Actor.cur_state != obj_State.AttackState):
+            Actor.event_que.append(obj_State.AttackState)
+        '''
         obj_Monster.monster[Sel_Monster].hp -= Actor.atk
         print(str(Sel_Monster) + "몬스터의 체력 : " + str(obj_Monster.monster[Sel_Monster].hp))
         Actor.myturn = 0
         Actor.Acgauge = 0
         Sel_Skill = 0
         Sel_Monster = None
+        '''
 
 def MonsterAction(Monster):
     global agro
@@ -86,6 +90,8 @@ def Skill_Sel(x, y, Sel_Skill):
     for act in obj_Actor.actor:
         for i in range(0, 3):
             if Inpoint(act.skill[i], x, y):
+                Scn_Battle.x = 0
+                Scn_Battle.y = 0
                 return act.skill[i].kind
     return Sel_Skill
     '''
@@ -101,6 +107,8 @@ def Skill_Sel(x, y, Sel_Skill):
 def Monster_Target_Sel(x, y):
     for mon in obj_Monster.monster:
         if Inpoint(mon, x, y):
+            Scn_Battle.x = 0
+            Scn_Battle.y = 0
             return mon.position
         '''
     if (350 - 32 <= x and 350 + 32 >= x and FrameWork.Window_H / 2 - 32 <= y and FrameWork.Window_H / 2 + 32 >= y):

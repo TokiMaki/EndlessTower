@@ -3,6 +3,7 @@ from pico2d import *
 Actor = None
 Actor1 = None
 Monster = None
+Weapon = None
 Skill = None
 Skill_sel = None
 font = None
@@ -10,7 +11,7 @@ battle_background = None
 actor_maneger_background = None
 
 def Upload_data():
-    global Actor, Actor1, Monster, Skill, Skill_sel, font, battle_background, actor_maneger_background
+    global Actor, Actor1, Monster, Skill, Skill_sel, font, battle_background, actor_maneger_background, Weapon
     if Actor is None:
         Actor = [Actor1_sound_data() for i in range(3)]
         Actor[0].image = load_image('Resource\\Actor\\Actor1.png')
@@ -47,6 +48,10 @@ def Upload_data():
         Actor1[2][5].image = load_image('Resource\\Actor\\Actor4_6.png')
         Actor1[2][6].image = load_image('Resource\\Actor\\Actor4_7.png')
         Actor1[2][7].image = load_image('Resource\\Actor\\Actor4_8.png')
+
+    if Weapon is None:
+        Weapon = Weapon_sound_data()
+        Weapon.image = load_image('Resource\\Actor\\Weapons1.png')
 
     if Monster is None:
         Monster = [Monster_sound_data() for i in range(2)]
@@ -94,6 +99,11 @@ class Monster_sound_data(image_data):
 class Skill_sound_date(image_data):
     def __init__(self):
         super(Skill_sound_date, self).__init__()
+        self.sound = None
+
+class Weapon_sound_data(image_data):
+    def __init__(self):
+        super(Weapon_sound_data, self).__init__()
         self.sound = None
 
 class font_date():
