@@ -20,6 +20,9 @@ RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
+BasicAttack_Skill_Kind = [[15, 12], [14, 1], [14, 9], [14, 8], [14, 7]]
+Magic_Skill_Kind = [[14, 0], [14, 1], [14, 2], [14, 4], [14, 5]]
+
 class IdleState:
     @staticmethod
     def enter(Actor):
@@ -77,12 +80,12 @@ class DeadState:
 class BasicAttackState:
     attact = 0
     @staticmethod
-    def enter(Actor):
+    def enter(Actor, Skill_kind1, Skill_kind2):
         Actor.frame = 0
         Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
         Actor.actframe = 0
         Actor.next_act_frame = 0
-        Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 4)
+        Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 4, 4)
 
     @staticmethod
     def exit(Actor):
@@ -144,7 +147,7 @@ class BasicAttackState:
 
 class MagicState:
     @staticmethod
-    def enter(Actor):
+    def enter(Actor, Skill_kind1, Skill_kind2):
         Actor.frame = 0
         Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
         Actor.actframe = 0

@@ -47,7 +47,10 @@ class Actor:
         if len(self.event_que) > 0:
             self.cur_state.exit(self)
             self.cur_state = self.event_que.pop()
-            self.cur_state.enter(self)
+            if (self.cur_state != Obj_State.BasicAttackState and self.cur_state != Obj_State.MagicState):
+                self.cur_state.enter(self)
+            if (self.cur_state == Obj_State.BasicAttackState or self.cur_state == Obj_State.MagicState):
+                self.cur_state.enter(self, self.skill[Sys_Battle.Sel_Skill].updown_num, self.skill[Sys_Battle.Sel_Skill].left_num)
 
     def return_myturn(self):
         return self.myturn
@@ -69,7 +72,7 @@ class Actor:
     def draw(self):
         self.cur_state.draw(self)
         if (self.myturn == 1):
-            for i in range(0, 3):
+            for i in range(0, 2):
                 self.skill[i].draw()
 
 class Skill():
@@ -93,15 +96,9 @@ class Skill():
         if (self.kind == 1):
             rssmgr.Skill.image.clip_draw(32 * self.left_num, 32 * self.updown_num, 32, 32,
                                          Project_SceneFrameWork.Window_W - (64 * 2), 64, 64, 64)
-        if (self.kind == 2):
-            rssmgr.Skill.image.clip_draw(32 * self.left_num, 32 * self.updown_num, 32, 32,
-                                         Project_SceneFrameWork.Window_W - (64 * 1), 64, 64, 64)
         if (Sys_Battle.Sel_Skill == 0):
             rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 3), 64, 64,
                                              64)
         if (Sys_Battle.Sel_Skill == 1):
             rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 2), 64, 64,
-                                             64)
-        if (Sys_Battle.Sel_Skill == 2):
-            rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 1), 64, 64,
                                              64)

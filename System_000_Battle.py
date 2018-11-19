@@ -55,9 +55,9 @@ def ActorAction(Actor):
     Sel_Monster = Monster_Target_Sel(Scn_Battle.x, Scn_Battle.y)
     if (Sel_Monster != None and obj_Monster.monster[Sel_Monster].state != 1):
         #if (Actor.cur_state != obj_State.BasicAttackState):
-        if(Actor.cur_state != obj_State.MagicState):
+        if(Actor.cur_state == obj_State.IdleState):
             Actor.target = Sel_Monster
-            Actor.event_que.append(obj_State.MagicState)
+            Actor.event_que.append(Skill_Kind(Actor.skill[Sel_Skill].updown_num, Actor.skill[Sel_Skill].left_num))
         '''
         obj_Monster.monster[Sel_Monster].hp -= Actor.atk
         print(str(Sel_Monster) + "몬스터의 체력 : " + str(obj_Monster.monster[Sel_Monster].hp))
@@ -90,7 +90,7 @@ def MonsterAction(Monster):
 
 def Skill_Sel(x, y, Sel_Skill):
     for act in obj_Actor.actor:
-        for i in range(0, 3):
+        for i in range(0, 2):
             if Inpoint(act.skill[i], x, y):
                 Scn_Battle.x = 0
                 Scn_Battle.y = 0
@@ -105,6 +105,15 @@ def Skill_Sel(x, y, Sel_Skill):
         return 2
     return Sel_Skill
     '''
+
+def Skill_Kind(Skill_updown, Skill_left):
+    for i in range(0, 5, 1):
+        if (Skill_updown == obj_State.BasicAttack_Skill_Kind[i][0] and Skill_left == obj_State.BasicAttack_Skill_Kind[i][1]):
+            return obj_State.BasicAttackState
+    for i in range(0, 4, 1):
+        if (Skill_updown == obj_State.Magic_Skill_Kind[i][0] and Skill_left == obj_State.Magic_Skill_Kind[i][1]):
+            return obj_State.MagicState
+
 
 def Monster_Target_Sel(x, y):
     for mon in obj_Monster.monster:
