@@ -21,7 +21,7 @@ RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 BasicAttack_Skill_Kind = [[15, 12], [14, 1], [14, 9], [14, 8], [14, 7]]
-Magic_Skill_Kind = [[14, 0], [14, 1], [14, 2], [14, 4], [14, 5]]
+Magic_Skill_Kind = [[15, 0], [15, 1], [15, 2], [14, 4], [14, 5]]
 
 class IdleState:
     @staticmethod
@@ -86,10 +86,17 @@ class BasicAttackState:
         Actor.actframe = 0
         Actor.next_act_frame = 0
         Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 4, 4)
+        Actor.now_skill_updown = Skill_kind1
+        Actor.now_skill_left = Skill_kind2
 
     @staticmethod
     def exit(Actor):
-        pass
+        if (Actor.now_skill_updown == 15 and Actor.now_skill_left == 12):
+            Obj_Monster.monster[Sys_Battle.Sel_Monster].hp -= Actor.atk
+        Actor.myturn = 0
+        Actor.Acgauge = 0
+        Sys_Battle.Sel_Skill = 0
+        Sys_Battle.Sel_Monster = None
 
     @staticmethod
     def do(Actor):
@@ -116,10 +123,6 @@ class BasicAttackState:
 
         if (Actor.next_act_frame == 2):
             Actor.position_set()
-            Actor.myturn = 0
-            Actor.Acgauge = 0
-            Sys_Battle.Sel_Skill = 0
-            Sys_Battle.Sel_Monster = None
             Actor.event_que.append(IdleState)
 
 
@@ -146,17 +149,23 @@ class BasicAttackState:
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 3, 320 - 64 * 1, 64, 64, Actor.x, Actor.y)
 
 class MagicState:
+    stack = 0
     @staticmethod
     def enter(Actor, Skill_kind1, Skill_kind2):
         Actor.frame = 0
         Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
         Actor.actframe = 0
         Actor.next_act_frame = 0
-        Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 4, 0)
+        Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 4, 4)
 
     @staticmethod
     def exit(Actor):
-        pass
+        if (Actor.now_skill_updown == 15 and Actor.now_skill_left == 12):
+            Obj_Monster.monster[Sys_Battle.Sel_Monster].hp -= Actor.atk
+        Actor.myturn = 0
+        Actor.Acgauge = 0
+        Sys_Battle.Sel_Skill = 0
+        Sys_Battle.Sel_Monster = None
 
     @staticmethod
     def do(Actor):
@@ -179,7 +188,6 @@ class MagicState:
                 Actor.framebool = ATT_FRAMES_PER_ACTION * ATT_ACTION_PER_TIME
 
         if (Actor.next_act_frame == 2):
-            Obj_Effect.effect.update()
             Actor.frame = (Actor.frame + Actor.framebool * Framework.frame_time)
             if (Actor.frame >= 3):
                 Actor.frame = 2.99

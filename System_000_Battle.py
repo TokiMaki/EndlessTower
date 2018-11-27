@@ -52,7 +52,7 @@ def AcgaugeUpdate():
 def ActorAction(Actor):
     global Sel_Skill, Sel_Monster
     Sel_Skill = Skill_Sel(Scn_Battle.x, Scn_Battle.y, Sel_Skill)
-    Sel_Monster = Monster_Target_Sel(Scn_Battle.x, Scn_Battle.y)
+    Sel_Monster = Monster_Target_Sel(Sel_Monster, Scn_Battle.x, Scn_Battle.y)
     if (Sel_Monster != None and obj_Monster.monster[Sel_Monster].state != 1):
         #if (Actor.cur_state != obj_State.BasicAttackState):
         if(Actor.cur_state == obj_State.IdleState):
@@ -115,13 +115,15 @@ def Skill_Kind(Skill_updown, Skill_left):
             return obj_State.MagicState
 
 
-def Monster_Target_Sel(x, y):
+def Monster_Target_Sel(Sel_Monster, x, y):
     for mon in obj_Monster.monster:
         if Inpoint(mon, x, y):
             Scn_Battle.x = 0
             Scn_Battle.y = 0
             return mon.position
-        '''
+    return Sel_Monster
+
+    '''
     if (350 - 32 <= x and 350 + 32 >= x and FrameWork.Window_H / 2 - 32 <= y and FrameWork.Window_H / 2 + 32 >= y):
         Scn_Battle.x = 0
         Scn_Battle.y = 0
@@ -138,7 +140,7 @@ def Monster_Target_Sel(x, y):
         Scn_Battle.x = 0
         Scn_Battle.y = 0
         return 3
-        '''
+    '''
 
 def Skill_Act(left, up):
     pass

@@ -22,7 +22,7 @@ framebool = Obj_State.FRAMES_PER_ACTION * Obj_State.ACTION_PER_TIME
 
 warrior_skill_list = [[14, 1], [15, 7]]
 rogue_skill_list = [[14, 9], [14, 8], [14, 7]]
-magician_skill_list = [[14, 0], [14, 1], [14, 2]]
+magician_skill_list = [[15, 0], [15, 1], [15, 2]]
 cleric_skill_list = [[14, 5], [14, 4]]
 
 def enter():

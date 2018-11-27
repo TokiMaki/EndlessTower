@@ -22,6 +22,9 @@ class Actor:
         self.position = 0
         self.skill = [Skill() for i in range(2)]
 
+        self.now_skill_left = 0
+        self.now_skill_updown = 0
+
         self.Acgauge = 0
         self.speed = 0
 
@@ -54,6 +57,16 @@ class Actor:
 
     def return_myturn(self):
         return self.myturn
+
+    def get_bb(self):
+        if (self.position == 0):
+            return 650 - 32, Project_SceneFrameWork.Window_H / 2 - 32, 650 + 32, Project_SceneFrameWork.Window_H / 2 + 32
+        if (self.position == 1):
+            return 750 - 32, Project_SceneFrameWork.Window_H / 2 + 64 - 32, 750 + 32, Project_SceneFrameWork.Window_H / 2 + 64 + 32
+        if (self.position == 2):
+            return 750 - 32, Project_SceneFrameWork.Window_H / 2 - 64 - 32, 750 + 32, Project_SceneFrameWork.Window_H / 2 - 64 + 32
+        if (self.position == 3):
+            return 850 - 32, Project_SceneFrameWork.Window_H / 2 - 32, 850 + 32, Project_SceneFrameWork.Window_H / 2 + 32
 
     def position_set(self):
         if (self.position == 0):
