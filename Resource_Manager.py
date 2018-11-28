@@ -57,8 +57,15 @@ def Upload_data():
         Weapon[1].image = load_image('Resource\\Actor\\Weapons2.png')
 
     if Effect is None:
-        Effect = [Effect_sound_data() for i in range(1)]
+        Effect = [Effect_sound_data() for i in range(4)]
         Effect[0].image = load_image('Resource\\Effect\\Hit1.png')
+        Effect[0].max_frame = 4
+        Effect[1].image = load_image('Resource\\Effect\\Meteor.png')
+        Effect[1].max_frame = 25
+        Effect[2].image = load_image('Resource\\Effect\\Ice5.png')
+        Effect[2].max_frame = 30
+        Effect[3].image = load_image('Resource\\Effect\\Thunder4.png')
+        Effect[3].max_frame = 12
 
     if Monster is None:
         Monster = [Monster_sound_data() for i in range(2)]
@@ -118,6 +125,7 @@ class Effect_sound_data(image_data):
     def __init__(self):
         super(Effect_sound_data, self).__init__()
         self.sound = None
+        self.max_frame = None
 
 class font_date():
     def __init__(self):

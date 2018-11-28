@@ -110,7 +110,7 @@ def Skill_Kind(Skill_updown, Skill_left):
     for i in range(0, 5, 1):
         if (Skill_updown == obj_State.BasicAttack_Skill_Kind[i][0] and Skill_left == obj_State.BasicAttack_Skill_Kind[i][1]):
             return obj_State.BasicAttackState
-    for i in range(0, 4, 1):
+    for i in range(0, 5, 1):
         if (Skill_updown == obj_State.Magic_Skill_Kind[i][0] and Skill_left == obj_State.Magic_Skill_Kind[i][1]):
             return obj_State.MagicState
 

@@ -34,7 +34,9 @@ def enter():
     gachahero.job = 0
     gachahero.actor_num = random.randint(0, 2)
     gachahero.actor_in_num = random.randint(0, 7)
-    gachahero.job = random.randint(0, 3)
+    #gachahero.job = random.randint(0, 3)
+    # gachahero.job = random.randint(0, 2)
+    gachahero.job = 2
     gachahero.skill[0].kind = 0
     gachahero.skill[0].updown_num = 15
     gachahero.skill[0].left_num = 12
@@ -65,6 +67,7 @@ def enter():
         gachahero.skill[1].kind = 1
         gachahero.skill[1].updown_num = magician_skill_list[random_temp][0]
         gachahero.skill[1].left_num = magician_skill_list[random_temp][1]
+    '''
     if (gachahero.job == 3):
         gachahero.hp = random.randint(8, 12)
         gachahero.atk = random.randint(2, 4)
@@ -73,6 +76,7 @@ def enter():
         gachahero.skill[1].kind = 1
         gachahero.skill[1].updown_num = cleric_skill_list[random_temp][0]
         gachahero.skill[1].left_num = cleric_skill_list[random_temp][1]
+    '''
     Obj_Actor.hero.append(gachahero)
 
 
