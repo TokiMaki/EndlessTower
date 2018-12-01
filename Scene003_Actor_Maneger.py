@@ -29,9 +29,6 @@ def update(frame_time):
     for game_object in game_world.all_objects():
         game_object.update(frame_time)
 
-    if (sel != None):
-        point_in_Actor(x, y, Obj_Actor.hero[sel])
-
     sel = point_in_rect(x, y)
 
 
@@ -55,25 +52,22 @@ def draw(frame_time):
 
     if (sel != None):
         rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Framework.Window_W / 8 * 6 + (Framework.Window_W / 8 * int(sel % 2)), Framework.Window_H / 6 * 5 - (Framework.Window_H / 6 * int(sel / 2)), 64, 64)
-        rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, 650 - 400, Framework.Window_H / 2, 64, 64)
-        rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, 750 - 400, Framework.Window_H / 2 + 64, 64, 64)
-        rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, 750 - 400, Framework.Window_H / 2 - 64, 64, 64)
-        rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, 850 - 400, Framework.Window_H / 2, 64, 64)
-        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 8 + 20 * 2 - 20 * 0, '체력: %d' % Obj_Actor.hero[sel].hp, (128, 0, 0))
-        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 8 + 20 * 2 - 20 * 1, '공격력: %d' % Obj_Actor.hero[sel].atk, (0, 0, 0))
-        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 8 + 20 * 2 - 20 * 2, '속도: %d' % Obj_Actor.hero[sel].speed, (0, 0, 0))
+
+        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 0, '체력: %d' % Obj_Actor.hero[sel].hp, (128, 0, 0))
+        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 1, '공격력: %d' % Obj_Actor.hero[sel].atk, (0, 0, 0))
+        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 2, '속도: %d' % Obj_Actor.hero[sel].speed, (0, 0, 0))
 
         if (Obj_Actor.hero[sel].job == 0):
-            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 8 + 20 * 2 - 20 * 3, '클래스: 전사',
+            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 전사',
                                   (0, 0, 128))
         if (Obj_Actor.hero[sel].job == 1):
-            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 8 + 20 * 2 - 20 * 3, '클래스: 도적',
+            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 도적',
                                   (0, 0, 128))
         if (Obj_Actor.hero[sel].job == 2):
-            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 8 + 20 * 2 - 20 * 3, '클래스: 마법사',
+            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 마법사',
                                   (0, 0, 128))
         if (Obj_Actor.hero[sel].job == 3):
-            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 8 + 20 * 2 - 20 * 3, '클래스: 사제',
+            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 사제',
                                   (0, 0, 128))
 
     if (Obj_Actor.actor != None):
@@ -85,7 +79,7 @@ def draw(frame_time):
 
 
 def handle_events(frame_time):
-    global x, y
+    global x, y, space
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -96,6 +90,12 @@ def handle_events(frame_time):
             Framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
             Framework.pop_state()
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
+            if (space > 0):
+                space -= 1
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
+            if (len(Obj_Actor.hero) - 10 * space >= 10):
+                space += 1
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             x = event.x
             y = Framework.Window_H - event.y
@@ -125,6 +125,7 @@ def point_in_rect(x, y):
                 return i
     return None
 
+'''
 def point_in_Actor(x, y, actor):
     if (650 - 400 - 64 < x and
             650 - 400 + 64 > x and
@@ -178,3 +179,4 @@ def point_in_Actor(x, y, actor):
         Obj_Actor.actor.append(actor)
 
     actor.position_set()
+'''
