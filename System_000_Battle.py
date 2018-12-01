@@ -3,6 +3,7 @@ import Scene000_Battle as Scn_Battle
 import ObjectDate001_Actor as obj_Actor
 import ObjectDate002_Monster as obj_Monster
 import ObjectDate003_State as obj_State
+import ObjectDate005_Effect as obj_Effect
 import random
 
 who = 0
@@ -85,6 +86,7 @@ def MonsterAction(Monster):
     while (True):
         agro = random.randint(0, len(obj_Actor.hero) - 1)
         if (obj_Actor.hero[agro].cur_state != obj_State.DeadState):
+            Monster.effect = obj_Effect.Mon_Effect(agro, 0, Monster.atk)
             break
     if (obj_Actor.hero[agro].cur_state != obj_State.DeadState):
         obj_Actor.hero[agro].hp -= Monster.atk

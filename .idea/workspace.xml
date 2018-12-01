@@ -4,12 +4,11 @@
     <list default="true" id="81b78f2d-02cc-43c6-9b98-4407b5abef1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ObjectDate001_Actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectDate001_Actor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObjectDate004_Background.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectDate004_Background.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resource_Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Resource_Manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scene000_Battle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scene000_Battle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectDate002_Monster.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectDate002_Monster.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectDate003_State.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectDate003_State.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ObjectDate005_Effect.py" beforeDir="false" afterPath="$PROJECT_DIR$/ObjectDate005_Effect.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene001_Gacha.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scene001_Gacha.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scene002_Newhero.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scene002_Newhero.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scene003_Actor_Maneger.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scene003_Actor_Maneger.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/System_000_Battle.py" beforeDir="false" afterPath="$PROJECT_DIR$/System_000_Battle.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,26 +49,26 @@
         <counts>
           <entry key="gitattributes" value="3" />
           <entry key="png" value="43" />
-          <entry key="py" value="415" />
+          <entry key="py" value="432" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="43" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="415" />
+          <entry key="Python" value="432" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="17" />
-          <entry key="py" value="17324" />
+          <entry key="py" value="18173" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="17" />
-          <entry key="Python" value="17324" />
+          <entry key="Python" value="18173" />
         </counts>
       </usages-collector>
     </session>
@@ -77,12 +76,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scene002_Newhero.py">
+        <entry file="file://$PROJECT_DIR$/ObjectDate003_State.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="139" column="63" lean-forward="true" selection-start-line="139" selection-start-column="63" selection-end-line="139" selection-end-column="63" />
+            <state relative-caret-position="304">
+              <caret line="91" column="17" lean-forward="true" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
+                <element signature="e#0#20#0" expanded="true" />
+                <marker date="1543672393116" expanded="true" signature="3215:3221" ph="..." />
               </folding>
             </state>
           </provider>
@@ -91,39 +91,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scene001_Gacha.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="83" column="30" lean-forward="true" selection-start-line="83" selection-start-column="30" selection-end-line="84" selection-end-column="44" />
+            <state relative-caret-position="378">
+              <caret line="74" column="41" lean-forward="true" selection-start-line="74" selection-start-column="41" selection-end-line="74" selection-end-column="41" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
-                <marker date="1543657257880" expanded="true" signature="706:709" ph="..." />
+                <marker date="1543658247403" expanded="true" signature="706:709" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ObjectDate003_State.py">
+        <entry file="file://$PROJECT_DIR$/Resource_Manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="181" column="45" lean-forward="true" selection-start-line="181" selection-start-column="45" selection-end-line="181" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-                <marker date="1543653699489" expanded="true" signature="3293:3299" ph="..." />
-              </folding>
+            <state relative-caret-position="418">
+              <caret line="100" column="17" lean-forward="true" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Scene003_Actor_Maneger.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resource.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="91" column="57" selection-start-line="91" selection-start-column="57" selection-end-line="91" selection-end-column="57" />
+            <state relative-caret-position="38">
+              <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ObjectDate001_Actor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
-                <marker date="1543657257956" expanded="true" signature="516:518" ph="..." />
-                <marker date="1543657257956" expanded="true" signature="552:555" ph="..." />
-                <marker date="1543657257956" expanded="true" signature="719:722" ph="..." />
               </folding>
             </state>
           </provider>
@@ -132,54 +134,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scene000_Battle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
+            <state relative-caret-position="171">
+              <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
-                <marker date="1543656699759" expanded="true" signature="1267:1270" ph="..." />
+                <marker date="1543673302142" expanded="true" signature="1267:1270" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Python37/Lib/random.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Project_Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="221" selection-start-line="221" selection-end-line="221" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/System_000_Battle.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="16" column="22" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="304">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
               <folding>
-                <marker date="1543656610679" expanded="true" signature="547:701" ph="..." />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ObjectDate001_Actor.py">
+        <entry file="file://$PROJECT_DIR$/ObjectDate002_Monster.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="47" column="27" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="48" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ObjectDate005_Effect.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="-97">
+              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -192,6 +173,18 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="361">
               <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ObjectDate005_Effect.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="817">
+              <caret line="61" column="60" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -224,6 +217,7 @@
       <find>Monster[i]</find>
       <find>obj_Actor.</find>
       <find>(i - (space * 10))</find>
+      <find>gachatemp[draw_num - 1]</find>
     </findStrings>
     <replaceStrings>
       <replace>Actor</replace>
@@ -235,6 +229,7 @@
       <replace>battle_background</replace>
       <replace>BasicAttackState</replace>
       <replace>i</replace>
+      <replace>gachahero</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -254,18 +249,18 @@
         <option value="$PROJECT_DIR$/game_world.py" />
         <option value="$PROJECT_DIR$/ObjectDate006_Effect.py" />
         <option value="$PROJECT_DIR$/Resource.py" />
-        <option value="$PROJECT_DIR$/ObjectDate003_State.py" />
         <option value="$PROJECT_DIR$/Project_Main.py" />
-        <option value="$PROJECT_DIR$/ObjectDate002_Monster.py" />
-        <option value="$PROJECT_DIR$/ObjectDate005_Effect.py" />
         <option value="$PROJECT_DIR$/Resource_Manager.py" />
         <option value="$PROJECT_DIR$/ObjectDate004_Background.py" />
-        <option value="$PROJECT_DIR$/Scene002_Newhero.py" />
-        <option value="$PROJECT_DIR$/System_000_Battle.py" />
-        <option value="$PROJECT_DIR$/ObjectDate001_Actor.py" />
-        <option value="$PROJECT_DIR$/Scene000_Battle.py" />
-        <option value="$PROJECT_DIR$/Scene001_Gacha.py" />
         <option value="$PROJECT_DIR$/Scene003_Actor_Maneger.py" />
+        <option value="$PROJECT_DIR$/Scene001_Gacha.py" />
+        <option value="$PROJECT_DIR$/Scene002_Newhero.py" />
+        <option value="$PROJECT_DIR$/ObjectDate003_State.py" />
+        <option value="$PROJECT_DIR$/ObjectDate001_Actor.py" />
+        <option value="$PROJECT_DIR$/System_000_Battle.py" />
+        <option value="$PROJECT_DIR$/ObjectDate002_Monster.py" />
+        <option value="$PROJECT_DIR$/Scene000_Battle.py" />
+        <option value="$PROJECT_DIR$/ObjectDate005_Effect.py" />
       </list>
     </option>
   </component>
@@ -338,7 +333,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../2DGP/Drills/Drill-15" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -473,8 +468,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.Project_Main" />
-        <item itemvalue="Python.Scene000_Battle" />
         <item itemvalue="Python.ObjectDate003_State" />
+        <item itemvalue="Python.Scene000_Battle" />
         <item itemvalue="Python.ObjectDate001_Actor" />
         <item itemvalue="Python.Resource_Manager" />
       </list>
@@ -497,12 +492,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19178082" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19178082" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32899022" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32899022" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.29967427" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -518,6 +513,16 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ObjectDate002_Monster.py</url>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/System_001_Skill_Select.py" />
@@ -599,48 +604,10 @@
     <entry file="file://$PROJECT_DIR$/Resource/Skill/IconSet.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resource.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game_world.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ObjectDate002_Monster.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="46" column="159" selection-start-line="46" selection-start-column="159" selection-end-line="46" selection-end-column="159" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project_SceneFrameWork.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project_Main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resource_Manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="88" column="24" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -651,6 +618,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Project_SceneFrameWork.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scene003_Actor_Maneger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1045">
+          <caret line="99" column="83" lean-forward="true" selection-start-line="99" selection-start-column="83" selection-end-line="99" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <marker date="1543657257956" expanded="true" signature="516:518" ph="..." />
+            <marker date="1543657257956" expanded="true" signature="552:555" ph="..." />
+            <marker date="1543657257956" expanded="true" signature="719:722" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scene002_Newhero.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="128" column="120" selection-start-line="128" selection-start-column="120" selection-end-line="128" selection-end-column="120" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System_000_Battle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="88" column="72" lean-forward="true" selection-start-line="88" selection-start-column="72" selection-end-line="88" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+            <marker date="1543673160164" expanded="true" signature="589:743" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ObjectDate004_Background.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -658,10 +666,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ObjectDate001_Actor.py">
+    <entry file="file://$PROJECT_DIR$/ObjectDate005_Effect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="47" column="27" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="48" selection-end-column="44" />
+        <state relative-caret-position="817">
+          <caret line="61" column="60" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ObjectDate002_Monster.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-97">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
@@ -670,76 +688,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ObjectDate003_State.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="181" column="45" lean-forward="true" selection-start-line="181" selection-start-column="45" selection-end-line="181" selection-end-column="45" />
+        <state relative-caret-position="304">
+          <caret line="91" column="17" lean-forward="true" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="17" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1543653699489" expanded="true" signature="3293:3299" ph="..." />
+            <marker date="1543672393116" expanded="true" signature="3215:3221" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ObjectDate005_Effect.py">
+    <entry file="file://$PROJECT_DIR$/ObjectDate001_Actor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="266">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/System_000_Battle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <marker date="1543656610679" expanded="true" signature="547:701" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scene000_Battle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="58" column="8" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <marker date="1543656699759" expanded="true" signature="1267:1270" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scene002_Newhero.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="139" column="63" lean-forward="true" selection-start-line="139" selection-start-column="63" selection-end-line="139" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Scene001_Gacha.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="83" column="30" lean-forward="true" selection-start-line="83" selection-start-column="30" selection-end-line="84" selection-end-column="44" />
+        <state relative-caret-position="378">
+          <caret line="74" column="41" lean-forward="true" selection-start-line="74" selection-start-column="41" selection-end-line="74" selection-end-column="41" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-            <marker date="1543657257880" expanded="true" signature="706:709" ph="..." />
+            <marker date="1543658247403" expanded="true" signature="706:709" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scene003_Actor_Maneger.py">
+    <entry file="file://$PROJECT_DIR$/Scene000_Battle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="91" column="57" selection-start-line="91" selection-start-column="57" selection-end-line="91" selection-end-column="57" />
+        <state relative-caret-position="171">
+          <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <marker date="1543657257956" expanded="true" signature="516:518" ph="..." />
-            <marker date="1543657257956" expanded="true" signature="552:555" ph="..." />
-            <marker date="1543657257956" expanded="true" signature="719:722" ph="..." />
+            <element signature="e#0#42#0" expanded="true" />
+            <marker date="1543673302142" expanded="true" signature="1267:1270" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource_Manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="100" column="17" lean-forward="true" selection-start-line="100" selection-start-column="8" selection-end-line="100" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project_Main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

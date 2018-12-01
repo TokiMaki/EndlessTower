@@ -2,6 +2,7 @@ from pico2d import *
 import Project_SceneFrameWork
 import Resource_Manager as rssmgr
 import System_000_Battle as Sys_Battle
+import ObjectDate005_Effect as Obj_Effect
 import ObjectDate003_State as Obj_State
 import random
 
@@ -74,7 +75,7 @@ class Actor:
 
     def position_set(self):
         self.x = random.randint(650, 850)
-        self.y = random.randint(Project_SceneFrameWork.Window_H / 2 - 32 - 32, Project_SceneFrameWork.Window_H / 2 + 32 + 32)
+        self.y = random.randint(Project_SceneFrameWork.Window_H / 2 - 32 - 96, Project_SceneFrameWork.Window_H / 2 + 32 + 96)
 
     def draw(self):
         self.cur_state.draw(self)

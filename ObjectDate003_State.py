@@ -67,8 +67,6 @@ class DeadState:
         if (Actor.effect != None):
             Actor.effect.update()
             Actor.effect.draw()
-        if (Actor.hp > 0):
-            Actor.event_que.append(IdleState)
         if (Actor.frame >= 3):
             Actor.frame = 2.99
             Actor.framebool *= -1
@@ -87,15 +85,14 @@ class BasicAttackState:
         Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
         Actor.actframe = 0
         Actor.next_act_frame = 0
-        Actor.effect = Obj_Effect.Effect(Actor.target, 0)
+        Actor.effect = Obj_Effect.Effect(Actor.target, 0, Actor.atk * 1.8)
         Actor.now_skill_updown = Skill_kind1
         Actor.now_skill_left = Skill_kind2
 
     @staticmethod
     def exit(Actor):
         if (Actor.now_skill_updown == 15 and Actor.now_skill_left == 12):
-            # Obj_Monster.monster[0].hp -= Actor.atk
-            pass
+            Obj_Monster.monster.hp -= Actor.atk
         Actor.myturn = 0
         Actor.Acgauge = 0
 
@@ -119,7 +116,7 @@ class BasicAttackState:
 
             if (Actor.frame > 1.5):
                 Actor.effect.update()
-                if (Actor.effect.frame >= 4):
+                if (Actor.effect.frame >= Actor.effect.max_frame):
                     Actor.next_act_frame += 1
                     Actor.frame = 0
                     Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
@@ -160,21 +157,29 @@ class MagicState:
         Actor.actframe = 0
         Actor.next_act_frame = 0
         if (Skill_kind1 == 15 and Skill_kind2 == 0):
-            Actor.effect = Obj_Effect.Effect(Actor.target, 1)
+            Actor.effect = Obj_Effect.Effect(Actor.target, 1, Actor.atk * 1.8)
         elif (Skill_kind1 == 15 and Skill_kind2 == 1):
-            Actor.effect = Obj_Effect.Effect(Actor.target, 2)
+            Actor.effect = Obj_Effect.Effect(Actor.target, 2, Actor.atk * 2.2)
         elif (Skill_kind1 == 15 and Skill_kind2 == 2):
-            Actor.effect = Obj_Effect.Effect(Actor.target, 3)
+            Actor.effect = Obj_Effect.Effect(Actor.target, 3, Actor.atk * 2.0)
         else:
             Actor.effect = Obj_Effect.Effect(Actor.target, 0)
+        Actor.now_skill_updown = Skill_kind1
+        Actor.now_skill_left = Skill_kind2
 
 
     @staticmethod
     def exit(Actor):
         Actor.myturn = 0
         Actor.Acgauge = 0
-        Sys_Battle.Sel_Skill = 0
-        Sys_Battle.Sel_Monster = None
+        if Actor.effect.effect_num == 1:
+            Obj_Monster.monster.hp -= Actor.atk * 1.8
+        if Actor.effect.effect_num == 2:
+            Obj_Monster.monster.hp -= Actor.atk * 2.2
+        if Actor.effect.effect_num == 3:
+            Obj_Monster.monster.hp -= Actor.atk * 2.0
+
+
 
     @staticmethod
     def do(Actor):
@@ -215,8 +220,6 @@ class MagicState:
             Actor.position_set()
             Actor.myturn = 0
             Actor.Acgauge = 0
-            Sys_Battle.Sel_Skill = 0
-            Sys_Battle.Sel_Monster = None
             Actor.event_que.append(IdleState)
 
 

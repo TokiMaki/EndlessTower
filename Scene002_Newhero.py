@@ -20,6 +20,7 @@ gachahero = None
 gachatemp = []
 frame = 0
 gacha_times = 0
+
 draw_num = 0
 
 
@@ -31,8 +32,17 @@ magician_skill_list = [[15, 0, 2], [15, 1, 2], [15, 2, 2]]
 cleric_skill_list = [[14, 5, 2], [14, 4, 3]]
 
 def enter():
-    global gachahero, gachatemp
-    for i in range(0, gacha_times, 1):
+    global gachahero, gachatemp, draw_num
+    draw_num = 0
+
+def exit():
+    pass
+
+
+def update(frame_time):
+    global frame, framebool, sleepframe, draw_num
+    if (draw_num < gacha_times):
+        Resource.Money -= 1
         Sys_Battle.Sel_Skill = 4
         gachahero = Obj_Actor.Actor()
         gachahero.grade = random.randint(3, 5)
@@ -85,16 +95,9 @@ def enter():
         '''
         Obj_Actor.hero.append(gachahero)
         gachatemp.append(gachahero)
-
-
-def exit():
-    pass
-
-
-def update(frame_time):
-    global frame, framebool, sleepframe, draw_num
     frame += (framebool * Framework.frame_time)
-    draw_num = (draw_num + 1) % gacha_times
+    if (gacha_times > draw_num):
+        draw_num = (draw_num + 1)
     if (frame >= 3):
         frame = 2.99
         framebool = -Obj_State.FRAMES_PER_ACTION * Obj_State.ACTION_PER_TIME
@@ -108,24 +111,24 @@ def draw(frame_time):
     clear_canvas()
     for game_object in game_world.all_objects():
         game_object.draw()
-    rssmgr.Actor[gachatemp[draw_num].actor_num].image.clip_draw(48 * int(frame) + (48 * 3) * (gachatemp[draw_num].actor_in_num % 4),
-                                                                (48 * 7) - (48 * 4) * int((gachatemp[draw_num].actor_in_num / 4)),
+    rssmgr.Actor[gachatemp[draw_num - 1].actor_num].image.clip_draw(48 * int(frame) + (48 * 3) * (gachatemp[draw_num - 1].actor_in_num % 4),
+                                                                (48 * 7) - (48 * 4) * int((gachatemp[draw_num - 1].actor_in_num / 4)),
                                                                 48, 48,
                                                                 Framework.Window_W / 4, Framework.Window_H / 2, 64, 64)
     rssmgr.font.font.draw(50, 50, '(Gold: %d)' % Resource.Money, (0, 0, 0))
-    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 0, '체력: %d' % gachatemp[draw_num].maxhp, (0, 0, 0))
-    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 1, '공격력: %d' % gachatemp[draw_num].atk, (0, 0, 0))
-    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 2, '속도: %d' % gachatemp[draw_num].speed, (0, 0, 0))
-    if (gachatemp[draw_num].job == 0):
+    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 0, '체력: %d' % gachatemp[draw_num - 1].maxhp, (0, 0, 0))
+    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 1, '공격력: %d' % gachatemp[draw_num - 1].atk, (0, 0, 0))
+    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 2, '속도: %d' % gachatemp[draw_num - 1].speed, (0, 0, 0))
+    if (gachatemp[draw_num - 1].job == 0):
         rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 전사', (0, 0, 0))
-    if (gachatemp[draw_num].job == 1):
+    if (gachatemp[draw_num - 1].job == 1):
         rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 도적', (0, 0, 0))
-    if (gachatemp[draw_num].job == 2):
+    if (gachatemp[draw_num - 1].job == 2):
         rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 마법사', (0, 0, 0))
-    if (gachatemp[draw_num].job == 3):
+    if (gachatemp[draw_num - 1].job == 3):
         rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 사제', (0, 0, 0))
     for i in range(0, 2):
-        gachatemp[draw_num].skill[i].draw()
+        gachatemp[draw_num - 1].skill[i].draw()
     update_canvas()
 
 

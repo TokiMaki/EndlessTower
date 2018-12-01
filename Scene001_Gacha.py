@@ -67,13 +67,11 @@ def handle_events(frame_time):
             if Resource.Money > 0:
                 Sc_Newhero.gacha_times = 1
                 Sc_Newhero.gachatemp = []
-                Resource.Money -= 1
                 Framework.push_state(Sc_Newhero)
 
         elif event.type == SDL_KEYDOWN and event.key == SDLK_r:
-            if Resource.Money > 10:
-                Resource.Money -= 10
-                Sc_Newhero.gacha_times = 10
+            if Resource.Money > 0:
+                Sc_Newhero.gacha_times = Resource.Money
                 Sc_Newhero.gachatemp = []
                 Framework.push_state(Sc_Newhero)
 
