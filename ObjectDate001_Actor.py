@@ -75,6 +75,7 @@ class Actor:
     def position_set(self):
         self.x = random.randint(650, 850)
         self.y = random.randint(Project_SceneFrameWork.Window_H / 2 - 32 - 32, Project_SceneFrameWork.Window_H / 2 + 32 + 32)
+
     def draw(self):
         self.cur_state.draw(self)
 

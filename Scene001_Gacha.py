@@ -6,6 +6,8 @@ import Resource_Manager as rssmgr
 import Scene000_Battle as Sc_Battle
 import Scene002_Newhero as Sc_Newhero
 import Scene003_Actor_Maneger as Sc_Acmgr
+import ObjectDate004_Background as Obj_Background
+import game_world
 import Resource
 import Resource_Manager
 import System_000_Battle as Sys_Battle
@@ -26,10 +28,12 @@ y = 0
 
 def enter():
     rssmgr.Upload_data()
+    background = Obj_Background.Background(2)
+    game_world.add_object(background, 1)
 
 
 def exit():
-    close_canvas()
+    pass
 
 
 def update(frame_time):
@@ -43,6 +47,8 @@ def draw(frame_time):
     clear_canvas()
     # weapon.clip_draw(96 * frame , 320 - 64 * 5, 96, 64, 100 + 48, 300 + 64)
     # weapon.clip_draw(96 * frame + 96 * 3, 320 - 64 * 5, 96, 64, 100 - 16, 300 + 64)
+    for game_object in game_world.all_objects():
+        game_object.draw()
     Resource_Manager.font.font.draw(50, 50, '(Gold: %d)' % Resource.Money, (0, 0, 0))
     update_canvas()
 
@@ -72,9 +78,11 @@ def handle_events(frame_time):
                 Framework.push_state(Sc_Newhero)
 
         elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
-            Framework.push_state(Sc_Battle)
+            game_world.clear()
+            Framework.change_state(Sc_Battle)
         elif event.type == SDL_KEYDOWN and event.key == SDLK_2:
-            Framework.push_state(Sc_Acmgr)
+            game_world.clear()
+            Framework.change_state(Sc_Acmgr)
     pass
 
 

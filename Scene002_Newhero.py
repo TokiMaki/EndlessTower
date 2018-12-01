@@ -7,6 +7,7 @@ import Resource
 import Scene001_Gacha as Sc_Gacha
 import System_000_Battle as Sys_Battle
 import random
+import game_world
 
 # 무기를 쥐어줄때는 원 좌표에서 16을 빼야됨
 
@@ -105,6 +106,8 @@ def update(frame_time):
 def draw(frame_time):
     global frame, gachahero
     clear_canvas()
+    for game_object in game_world.all_objects():
+        game_object.draw()
     rssmgr.Actor[gachatemp[draw_num].actor_num].image.clip_draw(48 * int(frame) + (48 * 3) * (gachatemp[draw_num].actor_in_num % 4),
                                                                 (48 * 7) - (48 * 4) * int((gachatemp[draw_num].actor_in_num / 4)),
                                                                 48, 48,

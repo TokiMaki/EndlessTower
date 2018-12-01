@@ -4,6 +4,7 @@ import ObjectDate002_Monster
 import ObjectDate004_Background as Obj_Background
 from pico2d import *
 import Scene001_Gacha as Sc_Gacha
+import ObjectDate003_State as Obj_State
 import Resource_Manager as rssmgr
 import System_000_Battle as Sys_Battle
 import random
@@ -22,7 +23,6 @@ floor = 0
 
 
 def enter():
-    global weapon
     # open_canvas(Framework.Window_W, Framework.Window_H)
     rssmgr.Upload_data()
 
@@ -30,14 +30,13 @@ def enter():
     ObjectDate002_Monster.monster.speed = random.randint(10, 15)
     game_world.add_object(ObjectDate002_Monster.monster, 1)
 
-    for i in range(0, len(ObjectDate001_Actor.hero), 1):
-        ObjectDate001_Actor.actor.append(ObjectDate001_Actor.hero[i])
-    for i in range (0 ,len(ObjectDate001_Actor.actor), 1):
-        game_world.add_object(ObjectDate001_Actor.actor[i], 1)
+    for i in range (0 ,len(ObjectDate001_Actor.hero), 1):
+        game_world.add_object(ObjectDate001_Actor.hero[i], 1)
 
-    for act in ObjectDate001_Actor.actor:
-        act.Acgauge = random.randint(0, 30)
+    for act in ObjectDate001_Actor.hero:
+        act.Acgauge = random.randint(0, 50)
         act.hp = act.maxhp
+        act.cur_state = Obj_State.IdleState
         act.position_set()
 
     ObjectDate002_Monster.monster.position_set()
@@ -83,6 +82,8 @@ def handle_events(frame_time):
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             x = event.x
             y = Framework.Window_H - event.y
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
+            Framework.change_state(Sc_Gacha)
 
 
 def pause(): pass

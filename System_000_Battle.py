@@ -12,9 +12,9 @@ agro = 0
 Timer = 0
 
 def turn_check():
-    for i in range(0, len(obj_Actor.actor), 1):
-        if (obj_Actor.actor[i].Acgauge >= 100):
-            obj_Actor.actor[i].myturn = 1
+    for i in range(0, len(obj_Actor.hero), 1):
+        if (obj_Actor.hero[i].Acgauge >= 100):
+            obj_Actor.hero[i].myturn = 1
 
     if (obj_Monster.monster.Acgauge >= 100):
         obj_Monster.monster.myturn = 1
@@ -33,16 +33,16 @@ def AcgaugeUpdate():
     turn_check()
     if (Floor_end() != True):
 
-            for i in range(0, len(obj_Actor.actor), 1):
-                if obj_Actor.actor[i].cur_state == obj_State.IdleState:
-                    obj_Actor.actor[i].Acgauge += obj_Actor.actor[i].speed
+            for i in range(0, len(obj_Actor.hero), 1):
+                if obj_Actor.hero[i].cur_state == obj_State.IdleState:
+                    obj_Actor.hero[i].Acgauge += obj_Actor.hero[i].speed
 
             if obj_Monster.monster.state != 1:
                 obj_Monster.monster.Acgauge += obj_Monster.monster.speed
 
-            for i in range(0, len(obj_Actor.actor), 1):
-                if (obj_Actor.actor[i].myturn == 1):
-                    ActorAction(obj_Actor.actor[i])
+            for i in range(0, len(obj_Actor.hero), 1):
+                if (obj_Actor.hero[i].myturn == 1):
+                    ActorAction(obj_Actor.hero[i])
                     print(str(i) + "플레이어의 턴")
 
             if (obj_Monster.monster.myturn == 1):
@@ -50,9 +50,9 @@ def AcgaugeUpdate():
                 print("몬스터의 턴")
 
     elif (Floor_end()):
-            for i in range(0, len(obj_Actor.actor), 1):
-                if obj_Actor.actor[i].cur_state != obj_State.DeadState and obj_Actor.actor[i].cur_state != obj_State.VictoryState:
-                    obj_Actor.actor[i].cur_state = obj_State.VictoryState
+            for i in range(0, len(obj_Actor.hero), 1):
+                if obj_Actor.hero[i].cur_state != obj_State.DeadState and obj_Actor.hero[i].cur_state != obj_State.VictoryState:
+                    obj_Actor.hero[i].cur_state = obj_State.VictoryState
 
 
 def ActorAction(Actor):
@@ -83,17 +83,17 @@ def ActorAction(Actor):
 def MonsterAction(Monster):
     global agro
     while (True):
-        agro = random.randint(0, len(obj_Actor.actor) - 1)
-        if (obj_Actor.actor[agro].cur_state != obj_State.DeadState):
+        agro = random.randint(0, len(obj_Actor.hero) - 1)
+        if (obj_Actor.hero[agro].cur_state != obj_State.DeadState):
             break
-    if (obj_Actor.actor[agro].cur_state != obj_State.DeadState):
-        obj_Actor.actor[agro].hp -= Monster.atk
-        print(str(agro) + "플레이어의 체력 : " + str(obj_Actor.actor[agro].hp))
+    if (obj_Actor.hero[agro].cur_state != obj_State.DeadState):
+        obj_Actor.hero[agro].hp -= Monster.atk
+        print(str(agro) + "플레이어의 체력 : " + str(obj_Actor.hero[agro].hp))
         Monster.myturn = 0
         Monster.Acgauge = 0
 
 def Skill_Sel(x, y, Sel_Skill):
-    for act in obj_Actor.actor:
+    for act in obj_Actor.hero:
         for i in range(0, 2):
             if Inpoint(act.skill[i], x, y):
                 Scn_Battle.x = 0

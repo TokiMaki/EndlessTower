@@ -9,11 +9,12 @@ Skill_sel = None
 font = None
 battle_background = None
 actor_maneger_background = None
+gacha_background = None
 Effect = None
 
 def Upload_data():
     global Actor, Actor1, Monster, Skill, Skill_sel, font, battle_background, \
-        actor_maneger_background, Weapon, Effect
+        actor_maneger_background, Weapon, Effect, gacha_background
     if Actor is None:
         Actor = [Actor1_sound_data() for i in range(3)]
         Actor[0].image = load_image('Resource\\Actor\\Actor1.png')
@@ -82,6 +83,10 @@ def Upload_data():
         actor_maneger_background = [image_data() for i in range(2)]
         actor_maneger_background[0].image = load_image('Resource\\background\\Castle1.png')
         actor_maneger_background[1].image = load_image('Resource\\background\\Town5.png')
+    if gacha_background is None:
+        gacha_background = [image_data() for i in range(2)]
+        gacha_background[0].image = load_image('Resource\\background\\Sky.png')
+        gacha_background[1].image = load_image('Resource\\background\\Sky2.png')
 
     if Skill is None:
         Skill = Skill_sound_date()

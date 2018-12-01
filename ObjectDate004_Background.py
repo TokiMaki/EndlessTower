@@ -22,3 +22,6 @@ class Background:
         if self.state == 1:
             for i in range(0, 2):
                 rssmgr.actor_maneger_background[i].image.clip_draw(0, 0, 1000, 740, self.x, self.y, Project_SceneFrameWork.Window_W, Project_SceneFrameWork.Window_H)
+        if self.state == 2:
+            for i in range(0, 2):
+                rssmgr.gacha_background[i].image.clip_draw(0, 0, 1000, 740, self.x, self.y, Project_SceneFrameWork.Window_W, Project_SceneFrameWork.Window_H)
