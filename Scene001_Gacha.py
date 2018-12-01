@@ -23,8 +23,8 @@ x = 0
 y = 0
 
 
+
 def enter():
-    open_canvas(Framework.Window_W, Framework.Window_H)
     rssmgr.Upload_data()
 
 
@@ -48,7 +48,7 @@ def draw(frame_time):
 
 
 def handle_events(frame_time):
-    global x, y
+    global x, y, prees_t
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -59,8 +59,18 @@ def handle_events(frame_time):
             Framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_t:
             if Resource.Money > 0:
+                Sc_Newhero.gacha_times = 1
+                Sc_Newhero.gachatemp = []
                 Resource.Money -= 1
                 Framework.push_state(Sc_Newhero)
+
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_r:
+            if Resource.Money > 10:
+                Resource.Money -= 10
+                Sc_Newhero.gacha_times = 10
+                Sc_Newhero.gachatemp = []
+                Framework.push_state(Sc_Newhero)
+
         elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
             Framework.push_state(Sc_Battle)
         elif event.type == SDL_KEYDOWN and event.key == SDLK_2:

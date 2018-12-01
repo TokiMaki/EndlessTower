@@ -50,7 +50,6 @@ class IdleState:
             rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame), 320 - 64 * 0, 64, 64, Actor.x, Actor.y)
         if (Actor.myturn == 1):
             rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame), 320 - 64 * 1, 64, 64, Actor.x, Actor.y)
-            rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Actor.x, Actor.y, 64, 64)
 
 class DeadState:
     @staticmethod
@@ -65,6 +64,9 @@ class DeadState:
     @staticmethod
     def do(Actor):
         Actor.frame = (Actor.frame + Actor.framebool * Framework.frame_time)
+        if (Actor.effect != None):
+            Actor.effect.update()
+            Actor.effect.draw()
         if (Actor.hp > 0):
             Actor.event_que.append(IdleState)
         if (Actor.frame >= 3):
@@ -85,21 +87,22 @@ class BasicAttackState:
         Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
         Actor.actframe = 0
         Actor.next_act_frame = 0
-        Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 0)
+        Actor.effect = Obj_Effect.Effect(Actor.target, 0)
         Actor.now_skill_updown = Skill_kind1
         Actor.now_skill_left = Skill_kind2
 
     @staticmethod
     def exit(Actor):
         if (Actor.now_skill_updown == 15 and Actor.now_skill_left == 12):
-            Obj_Monster.monster[Sys_Battle.Sel_Monster].hp -= Actor.atk
+            # Obj_Monster.monster[0].hp -= Actor.atk
+            pass
         Actor.myturn = 0
         Actor.Acgauge = 0
-        Sys_Battle.Sel_Skill = 0
-        Sys_Battle.Sel_Monster = None
 
     @staticmethod
     def do(Actor):
+        if (Actor.hp <= 0):
+            Actor.event_que.append(DeadState)
 
         if (Actor.next_act_frame == 0):
             Actor.actframe += Framework.frame_time
@@ -115,8 +118,8 @@ class BasicAttackState:
                 Actor.frame = (Actor.frame + Actor.framebool * Framework.frame_time)
 
             if (Actor.frame > 1.5):
-                Obj_Effect.effect.update()
-                if (Obj_Effect.effect.frame >= 4):
+                Actor.effect.update()
+                if (Actor.effect.frame >= 4):
                     Actor.next_act_frame += 1
                     Actor.frame = 0
                     Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
@@ -132,19 +135,19 @@ class BasicAttackState:
             rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 0, 320 - 64 * 0, 64, 64, Actor.x, Actor.y)
         if (Actor.next_act_frame == 1):
             if (Actor.job == 0):
-                Obj_Effect.effect.draw()
+                Actor.effect.draw()
                 rssmgr.Weapon[0].image.clip_draw(96 * int(Actor.frame) + 96 * 0, 320 - 64 * 3, 96, 64, Actor.x - 16, Actor.y)
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 3, 320 - 64 * 1, 64, 64, Actor.x, Actor.y)
             if (Actor.job == 1):
-                Obj_Effect.effect.draw()
+                Actor.effect.draw()
                 rssmgr.Weapon[0].image.clip_draw(96 * int(Actor.frame) + 96 * 0, 320 - 64 * 0, 96, 64, Actor.x - 16, Actor.y)
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 3, 320 - 64 * 1, 64, 64, Actor.x, Actor.y)
             if (Actor.job == 2):
-                Obj_Effect.effect.draw()
+                Actor.effect.draw()
                 rssmgr.Weapon[0].image.clip_draw(96 * int(Actor.frame) + 96 * 0, 320 - 64 * 5, 96, 64, Actor.x - 16, Actor.y)
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 3, 320 - 64 * 1, 64, 64, Actor.x, Actor.y)
             if (Actor.job == 3):
-                Obj_Effect.effect.draw()
+                Actor.effect.draw()
                 rssmgr.Weapon[1].image.clip_draw(96 * int(Actor.frame) + 96 * 0, 320 - 64 * 1, 96, 64, Actor.x - 16, Actor.y)
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 3, 320 - 64 * 1, 64, 64, Actor.x, Actor.y)
 
@@ -157,19 +160,17 @@ class MagicState:
         Actor.actframe = 0
         Actor.next_act_frame = 0
         if (Skill_kind1 == 15 and Skill_kind2 == 0):
-            Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 1)
+            Actor.effect = Obj_Effect.Effect(Actor.target, 1)
         elif (Skill_kind1 == 15 and Skill_kind2 == 1):
-            Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 2)
+            Actor.effect = Obj_Effect.Effect(Actor.target, 2)
         elif (Skill_kind1 == 15 and Skill_kind2 == 2):
-            Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 3)
+            Actor.effect = Obj_Effect.Effect(Actor.target, 3)
         else:
-            Obj_Effect.effect = Obj_Effect.Effect(Actor.target, 0)
+            Actor.effect = Obj_Effect.Effect(Actor.target, 0)
 
 
     @staticmethod
     def exit(Actor):
-        if (Actor.now_skill_updown == 15 and Actor.now_skill_left == 12):
-            Obj_Monster.monster[Sys_Battle.Sel_Monster].hp -= Actor.atk
         Actor.myturn = 0
         Actor.Acgauge = 0
         Sys_Battle.Sel_Skill = 0
@@ -177,6 +178,8 @@ class MagicState:
 
     @staticmethod
     def do(Actor):
+        if (Actor.hp <= 0):
+            Actor.event_que.append(DeadState)
 
         if (Actor.next_act_frame == 0):
             Actor.actframe += Framework.frame_time
@@ -202,8 +205,8 @@ class MagicState:
                 Actor.framebool *= -1
             if (Actor.frame <= 0):
                 Actor.framebool *= -1
-            Obj_Effect.effect.update()
-            if (Obj_Effect.effect.frame >= Obj_Effect.effect.max_frame):
+            Actor.effect.update()
+            if (Actor.effect.frame >= Actor.effect.max_frame):
                 Actor.next_act_frame += 1
                 Actor.frame = 0
                 Actor.framebool = FRAMES_PER_ACTION * ACTION_PER_TIME
@@ -225,19 +228,19 @@ class MagicState:
             rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 3, 320 - 64 * 3, 64, 64, Actor.x, Actor.y)
         if (Actor.next_act_frame == 2):
             if (Actor.job == 0):
-                Obj_Effect.effect.draw()
+                Actor.effect.draw()
                 rssmgr.Weapon[0].image.clip_draw(96 * 2 + 96 * 0, 320 - 64 * 3, 96, 64, Actor.x - 16, Actor.y)
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 0, 320 - 64 * 2, 64, 64, Actor.x, Actor.y)
             if (Actor.job == 1):
-                Obj_Effect.effect.draw()
+                Actor.effect.draw()
                 rssmgr.Weapon[0].image.clip_draw(96 * 2 + 96 * 0, 320 - 64 * 0, 96, 64, Actor.x - 16, Actor.y)
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 0, 320 - 64 * 2, 64, 64, Actor.x, Actor.y)
             if (Actor.job == 2):
-                Obj_Effect.effect.draw()
+                Actor.effect.draw()
                 rssmgr.Weapon[0].image.clip_draw(96 * 2 + 96 * 0, 320 - 64 * 5, 96, 64, Actor.x - 16, Actor.y)
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 0, 320 - 64 * 2, 64, 64, Actor.x, Actor.y)
             if (Actor.job == 3):
-                Obj_Effect.effect.draw()
+                Actor.effect.draw()
                 rssmgr.Weapon[1].image.clip_draw(96 * 2 + 96 * 0, 320 - 64 * 1, 96, 64, Actor.x - 16, Actor.y)
                 rssmgr.Actor1[Actor.actor_num][Actor.actor_in_num].image.clip_draw(64 * int(Actor.frame) + 64 * 0, 320 - 64 * 2, 64, 64, Actor.x, Actor.y)
 

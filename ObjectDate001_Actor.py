@@ -3,6 +3,7 @@ import Project_SceneFrameWork
 import Resource_Manager as rssmgr
 import System_000_Battle as Sys_Battle
 import ObjectDate003_State as Obj_State
+import random
 
 hero = []
 actor = []
@@ -21,6 +22,8 @@ class Actor:
         self.dir = 1
         self.position = 0
         self.skill = [Skill() for i in range(2)]
+        self.effect = None
+        self.now_skill = 0
 
         self.now_skill_left = 0
         self.now_skill_updown = 0
@@ -32,6 +35,7 @@ class Actor:
         self.state = 0      # 0은 생존 1은 죽음
         self.grade = 0
         self.job = 0    # 0은 전사 1은 도적 2는 마법사 3은 성직자
+        self.maxhp = 1
         self.hp = 1
         self.atk = 0
 
@@ -53,7 +57,7 @@ class Actor:
             if (self.cur_state != Obj_State.BasicAttackState and self.cur_state != Obj_State.MagicState):
                 self.cur_state.enter(self)
             if (self.cur_state == Obj_State.BasicAttackState or self.cur_state == Obj_State.MagicState):
-                self.cur_state.enter(self, self.skill[Sys_Battle.Sel_Skill].updown_num, self.skill[Sys_Battle.Sel_Skill].left_num)
+                self.cur_state.enter(self, self.skill[self.now_skill].updown_num, self.skill[self.now_skill].left_num)
 
     def return_myturn(self):
         return self.myturn
@@ -69,24 +73,10 @@ class Actor:
             return 850 - 32, Project_SceneFrameWork.Window_H / 2 - 32, 850 + 32, Project_SceneFrameWork.Window_H / 2 + 32
 
     def position_set(self):
-        if (self.position == 0):
-            self.x = 650
-            self.y = Project_SceneFrameWork.Window_H / 2
-        if (self.position == 1):
-            self.x = 750
-            self.y = Project_SceneFrameWork.Window_H / 2 + 64
-        if (self.position == 2):
-            self.x = 750
-            self.y = Project_SceneFrameWork.Window_H / 2 - 64
-        if (self.position == 3):
-            self.x = 850
-            self.y = Project_SceneFrameWork.Window_H / 2
-
+        self.x = random.randint(650, 850)
+        self.y = random.randint(Project_SceneFrameWork.Window_H / 2 - 32 - 32, Project_SceneFrameWork.Window_H / 2 + 32 + 32)
     def draw(self):
         self.cur_state.draw(self)
-        if (self.myturn == 1):
-            for i in range(0, 2):
-                self.skill[i].draw()
 
 class Skill():
     def __init__(self, kind = 0, left = 0, updown = 0):
@@ -94,6 +84,7 @@ class Skill():
         self.kind = kind
         self.left_num = left           # 왼쪽에서부터 몇번째 이미지
         self.updown_num = updown           # 아래에서 위쪽으로 몇번째 이미지
+        self.cooltime = 2
         self.skillturn = 0
 
     def update(self):
@@ -109,9 +100,3 @@ class Skill():
         if (self.kind == 1):
             rssmgr.Skill.image.clip_draw(32 * self.left_num, 32 * self.updown_num, 32, 32,
                                          Project_SceneFrameWork.Window_W - (64 * 2), 64, 64, 64)
-        if (Sys_Battle.Sel_Skill == 0):
-            rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 3), 64, 64,
-                                             64)
-        if (Sys_Battle.Sel_Skill == 1):
-            rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Project_SceneFrameWork.Window_W - (64 * 2), 64, 64,
-                                             64)

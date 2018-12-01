@@ -3,6 +3,7 @@ import ObjectDate001_Actor
 import ObjectDate002_Monster
 import ObjectDate004_Background as Obj_Background
 from pico2d import *
+import Scene001_Gacha as Sc_Gacha
 import Resource_Manager as rssmgr
 import System_000_Battle as Sys_Battle
 import random
@@ -24,24 +25,22 @@ def enter():
     global weapon
     # open_canvas(Framework.Window_W, Framework.Window_H)
     rssmgr.Upload_data()
-    ObjectDate002_Monster.monster = [ObjectDate002_Monster.Monster() for i in range(4)]
 
-    for i in range(0, 4, 1):
-        ObjectDate002_Monster.monster[i].position = i
-        ObjectDate002_Monster.monster[i].speed = random.randint(5, 10)
-        game_world.add_object(ObjectDate002_Monster.monster[i], 1)
+    ObjectDate002_Monster.monster = ObjectDate002_Monster.Monster()
+    ObjectDate002_Monster.monster.speed = random.randint(10, 15)
+    game_world.add_object(ObjectDate002_Monster.monster, 1)
 
+    for i in range(0, len(ObjectDate001_Actor.hero), 1):
+        ObjectDate001_Actor.actor.append(ObjectDate001_Actor.hero[i])
     for i in range (0 ,len(ObjectDate001_Actor.actor), 1):
-            ObjectDate001_Actor.actor[i].Acgauge = 0
-            game_world.add_object(ObjectDate001_Actor.actor[i], 1)
+        game_world.add_object(ObjectDate001_Actor.actor[i], 1)
 
     for act in ObjectDate001_Actor.actor:
+        act.Acgauge = random.randint(0, 30)
+        act.hp = act.maxhp
         act.position_set()
 
-
-
-    for mon in ObjectDate002_Monster.monster:
-        mon.position_set()
+    ObjectDate002_Monster.monster.position_set()
 
     background = Obj_Background.Background(0)
     game_world.add_object(background, 0)
@@ -51,13 +50,14 @@ def enter():
 
 def exit():
     game_world.clear()
-    close_canvas()
 
 
 def update(frame_time):
     for game_object in game_world.all_objects():
         game_object.update(frame_time)
     Sys_Battle.AcgaugeUpdate()
+    if (Sys_Battle.All_Die()):
+        Framework.change_state(Sc_Gacha)
 
 
 def draw(frame_time):
