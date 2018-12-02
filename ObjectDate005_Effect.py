@@ -76,4 +76,4 @@ class Damege:
 
     def draw(self):
         if self.frame < 0.5:
-            rssmgr.font.font.draw(self.x, self.y + self.frame * 20, '%d' % self.damege, (255, 0, 0))
+            rssmgr.font[0].font.draw(self.x, self.y + self.frame * 20, '%d' % self.damege, (255, 0, 0))

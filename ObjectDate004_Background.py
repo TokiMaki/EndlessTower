@@ -25,3 +25,6 @@ class Background:
         if self.state == 2:
             for i in range(0, 2):
                 rssmgr.gacha_background[i].image.clip_draw(0, 0, 1000, 740, self.x, self.y, Project_SceneFrameWork.Window_W, Project_SceneFrameWork.Window_H)
+        if self.state == 3:
+            rssmgr.Logo_background[0].image.clip_draw(0, 0, 1024, 768, self.x, self.y, Project_SceneFrameWork.Window_W, Project_SceneFrameWork.Window_H)
+            rssmgr.Logo_background[1].image.clip_draw(0, 0, 480, 288, self.x, self.y, 480 * 1.5, 288 * 1.5)

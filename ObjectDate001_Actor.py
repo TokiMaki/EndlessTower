@@ -25,12 +25,14 @@ class Actor:
         self.skill = [Skill() for i in range(2)]
         self.effect = None
         self.now_skill = 0
+        self.exp = 0
+        self.nextexp = 5
+        self.level = 1
 
         self.now_skill_left = 0
         self.now_skill_updown = 0
 
         self.Acgauge = 0
-        self.speed = 0
 
         self.myturn = 0
         self.state = 0      # 0은 생존 1은 죽음
@@ -38,6 +40,7 @@ class Actor:
         self.job = 0    # 0은 전사 1은 도적 2는 마법사 3은 성직자
         self.maxhp = 1
         self.hp = 1
+        self.speed = 0
         self.atk = 0
 
         self.actor_num = 0
@@ -50,8 +53,18 @@ class Actor:
         self.cur_state = Obj_State.IdleState
         self.cur_state.enter(self)
 
+    def level_stat(self):
+        if (self.exp > self.nextexp):
+            self.level += 1
+            self.maxhp = self.maxhp * 1.2
+            self.atk = self.atk * 1.2
+            self.exp = self.exp - self.nextexp
+            self.nextexp = self.nextexp + 3
+
+
     def update(self, frame_time):
         self.cur_state.do(self)
+        self.level_stat()
         if len(self.event_que) > 0:
             self.cur_state.exit(self)
             self.cur_state = self.event_que.pop()

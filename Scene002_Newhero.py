@@ -115,18 +115,19 @@ def draw(frame_time):
                                                                 (48 * 7) - (48 * 4) * int((gachatemp[draw_num - 1].actor_in_num / 4)),
                                                                 48, 48,
                                                                 Framework.Window_W / 4, Framework.Window_H / 2, 64, 64)
-    rssmgr.font.font.draw(50, 50, '(Gold: %d)' % Resource.Money, (0, 0, 0))
-    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 0, '체력: %d' % gachatemp[draw_num - 1].maxhp, (0, 0, 0))
-    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 1, '공격력: %d' % gachatemp[draw_num - 1].atk, (0, 0, 0))
-    rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 2, '속도: %d' % gachatemp[draw_num - 1].speed, (0, 0, 0))
+    rssmgr.font[0].font.draw(50, 50, 'Gold: %d' % Resource.Money, (0, 0, 0))
+    rssmgr.font[0].font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 24 * 2 + 24 * 1, '레벨: %d' % gachatemp[draw_num - 1].level, (0, 128, 0))
+    rssmgr.font[0].font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 24 * 2 - 24 * 0, '체력: %d' % gachatemp[draw_num - 1].maxhp, (128, 0, 0))
+    rssmgr.font[0].font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 24 * 2 - 24 * 1, '공격력: %d' % gachatemp[draw_num - 1].atk, (0, 0, 0))
+    rssmgr.font[0].font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 24 * 2 - 24 * 2, '속도: %d' % gachatemp[draw_num - 1].speed, (0, 0, 0))
     if (gachatemp[draw_num - 1].job == 0):
-        rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 전사', (0, 0, 0))
+        rssmgr.font[0].font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 24 * 2 - 24 * 3, '클래스: 전사', (0, 0, 128))
     if (gachatemp[draw_num - 1].job == 1):
-        rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 도적', (0, 0, 0))
+        rssmgr.font[0].font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 24 * 2 - 24 * 3, '클래스: 도적', (0, 0, 128))
     if (gachatemp[draw_num - 1].job == 2):
-        rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 마법사', (0, 0, 0))
+        rssmgr.font[0].font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 24 * 2 - 24 * 3, '클래스: 마법사', (0, 0, 128))
     if (gachatemp[draw_num - 1].job == 3):
-        rssmgr.font.font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 사제', (0, 0, 0))
+        rssmgr.font[0].font.draw(Framework.Window_W / 4 * 3, Framework.Window_H / 2 + 24 * 2 - 24 * 3, '클래스: 사제', (0, 0, 128))
     for i in range(0, 2):
         gachatemp[draw_num - 1].skill[i].draw()
     update_canvas()

@@ -10,7 +10,8 @@ else:
 import Project_SceneFrameWork
 import Scene000_Battle
 import Scene001_Gacha
+import Scene004_Title
 from pico2d import *
 
 open_canvas(Project_SceneFrameWork.Window_W, Project_SceneFrameWork.Window_H)
-Project_SceneFrameWork.run(Scene001_Gacha)
+Project_SceneFrameWork.run(Scene004_Title)

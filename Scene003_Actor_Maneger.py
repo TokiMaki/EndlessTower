@@ -54,21 +54,23 @@ def draw(frame_time):
     if (sel != None):
         rssmgr.Skill_sel.image.clip_draw(0, 0, 32, 32, Framework.Window_W / 8 * 6 + (Framework.Window_W / 8 * int(sel % 2)), Framework.Window_H / 6 * 5 - (Framework.Window_H / 6 * int(sel / 2)), 64, 64)
 
-        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 0, '체력: %d' % Obj_Actor.hero[sel + space * 10].hp, (128, 0, 0))
-        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 1, '공격력: %d' % Obj_Actor.hero[sel + space * 10].atk, (0, 0, 0))
-        rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 2, '속도: %d' % Obj_Actor.hero[sel + space * 10].speed, (0, 0, 0))
+        rssmgr.font[0].font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 24 * 2 + 24 * 1,
+                                 '레벨: %d' % Obj_Actor.hero[sel + space * 10].level, (0, 128, 0))
+        rssmgr.font[0].font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 24 * 2 - 24 * 0, '체력: %d' % Obj_Actor.hero[sel + space * 10].maxhp, (128, 0, 0))
+        rssmgr.font[0].font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 24 * 2 - 24 * 1, '공격력: %d' % Obj_Actor.hero[sel + space * 10].atk, (0, 0, 0))
+        rssmgr.font[0].font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 24 * 2 - 24 * 2, '속도: %d' % Obj_Actor.hero[sel + space * 10].speed, (0, 0, 0))
 
         if (Obj_Actor.hero[sel + space * 10].job == 0):
-            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 전사',
+            rssmgr.font[0].font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 24 * 2 - 24 * 3, '클래스: 전사',
                                   (0, 0, 128))
         if (Obj_Actor.hero[sel + space * 10].job == 1):
-            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 도적',
+            rssmgr.font[0].font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 24 * 2 - 24 * 3, '클래스: 도적',
                                   (0, 0, 128))
         if (Obj_Actor.hero[sel + space * 10].job == 2):
-            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 마법사',
+            rssmgr.font[0].font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 24 * 2 - 24 * 3, '클래스: 마법사',
                                   (0, 0, 128))
         if (Obj_Actor.hero[sel + space * 10].job == 3):
-            rssmgr.font.font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 20 * 2 - 20 * 3, '클래스: 사제',
+            rssmgr.font[0].font.draw(Framework.Window_W / 10 * 1, Framework.Window_H / 2 + 24 * 2 - 24 * 3, '클래스: 사제',
                                   (0, 0, 128))
 
     if (Obj_Actor.actor != None):

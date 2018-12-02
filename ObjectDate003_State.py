@@ -91,8 +91,7 @@ class BasicAttackState:
 
     @staticmethod
     def exit(Actor):
-        if (Actor.now_skill_updown == 15 and Actor.now_skill_left == 12):
-            Obj_Monster.monster.hp -= Actor.atk
+        Obj_Monster.monster.hp -= Actor.atk
         Actor.myturn = 0
         Actor.Acgauge = 0
 

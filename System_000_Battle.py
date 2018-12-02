@@ -32,7 +32,7 @@ def All_Die():
 def AcgaugeUpdate():
     global who, Sel_Skill, Sel_Monster
     turn_check()
-    if (Floor_end() != True):
+    if (Floor_end() != True and All_Die() != True):
 
             for i in range(0, len(obj_Actor.hero), 1):
                 if obj_Actor.hero[i].cur_state == obj_State.IdleState:
@@ -184,7 +184,7 @@ def collide(a, b):
     return True
 
 def Floor_end():
-    if (obj_Monster.monster.state != 1):
+    if (obj_Monster.monster.state == 0):
         return False
 
     return True

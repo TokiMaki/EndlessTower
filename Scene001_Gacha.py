@@ -49,7 +49,9 @@ def draw(frame_time):
     # weapon.clip_draw(96 * frame + 96 * 3, 320 - 64 * 5, 96, 64, 100 - 16, 300 + 64)
     for game_object in game_world.all_objects():
         game_object.draw()
-    Resource_Manager.font.font.draw(50, 50, '(Gold: %d)' % Resource.Money, (0, 0, 0))
+    Resource_Manager.font[0].font.draw(50, 50, 'Gold: %d' % Resource.Money, (0, 0, 0))
+    Resource_Manager.font[0].font.draw(Framework.Window_W / 2 - 300, Framework.Window_H / 2, 'T를 눌러 뽑기를 해주세요!', (0, 0, 0))
+    Resource_Manager.font[0].font.draw(Framework.Window_W / 2 - 300, Framework.Window_H / 2 - 24, 'R를 눌러 연속으로 뽑기를 진행할 수 있어요!', (0, 0, 0))
     update_canvas()
 
 

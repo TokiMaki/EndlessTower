@@ -11,10 +11,11 @@ battle_background = None
 actor_maneger_background = None
 gacha_background = None
 Effect = None
+Logo_background = None
 
 def Upload_data():
     global Actor, Actor1, Monster, Skill, Skill_sel, font, battle_background, \
-        actor_maneger_background, Weapon, Effect, gacha_background
+        actor_maneger_background, Weapon, Effect, gacha_background, Logo_background
     if Actor is None:
         Actor = [Actor1_sound_data() for i in range(3)]
         Actor[0].image = load_image('Resource\\Actor\\Actor1.png')
@@ -83,10 +84,17 @@ def Upload_data():
         actor_maneger_background = [image_data() for i in range(2)]
         actor_maneger_background[0].image = load_image('Resource\\background\\Castle1.png')
         actor_maneger_background[1].image = load_image('Resource\\background\\Town5.png')
+
     if gacha_background is None:
         gacha_background = [image_data() for i in range(2)]
         gacha_background[0].image = load_image('Resource\\background\\Sky.png')
         gacha_background[1].image = load_image('Resource\\background\\Sky2.png')
+
+    if Logo_background is None:
+        Logo_background = [image_data() for i in range(2)]
+        Logo_background[0].image = load_image('Resource\\background\\White.png')
+        Logo_background[1].image = load_image('Resource\\background\\Main.jpg')
+
 
     if Skill is None:
         Skill = Skill_sound_date()
@@ -97,8 +105,10 @@ def Upload_data():
         Skill_sel.image = load_image('Resource\\Skill\\skill_sel.png')
 
     if font is None:
-        font = font_date()
-        font.font = load_font('Resource\\Font\\malgunbd.TTF', 16)
+        font = [font_date() for i in range(3)]
+        font[0].font = load_font('Resource\\Font\\malgunbd.TTF', 24)
+        font[1].font = load_font('Resource\\Font\\YDBomnalM.TTF', 100)
+        font[2].font = load_font('Resource\\Font\\YDBomnalM.TTF', 72)
 
 
 class image_data():
