@@ -13,7 +13,7 @@ x, y = 0, 0
 
 def enter():
     for i in range(0, len(Obj_Actor.hero), 1):
-        game_world.add_object(Obj_Actor.hero[i], 1)
+        game_world.add_object(Obj_Actor.hero[i], 0)
 
     background = Obj_Background.Background(1)
     game_world.add_object(background, 0)

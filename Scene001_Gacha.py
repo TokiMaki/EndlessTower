@@ -7,6 +7,7 @@ import Scene000_Battle as Sc_Battle
 import Scene002_Newhero as Sc_Newhero
 import Scene003_Actor_Maneger as Sc_Acmgr
 import ObjectDate004_Background as Obj_Background
+import ObjectDate006_Player as Obj_Player
 import game_world
 import Resource
 import Resource_Manager
@@ -29,7 +30,9 @@ y = 0
 def enter():
     rssmgr.Upload_data()
     background = Obj_Background.Background(2)
-    game_world.add_object(background, 1)
+    game_world.add_object(background, 0)
+    if Obj_Player.player is None:
+        Obj_Player.player = Obj_Player.Player()
 
 
 def exit():

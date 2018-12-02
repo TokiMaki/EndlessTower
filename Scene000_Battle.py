@@ -2,6 +2,8 @@ import Project_SceneFrameWork as Framework
 import ObjectDate001_Actor
 import ObjectDate002_Monster
 import ObjectDate004_Background as Obj_Background
+import ObjectDate005_Effect as Obj_Effect
+import ObjectDate006_Player as Obj_Player
 from pico2d import *
 import Scene001_Gacha as Sc_Gacha
 import ObjectDate003_State as Obj_State
@@ -38,6 +40,8 @@ def enter():
 
     for i in range (0 ,len(ObjectDate001_Actor.hero), 1):
         game_world.add_object(ObjectDate001_Actor.hero[i], 1)
+
+    game_world.add_object(Obj_Player.player, 1)
 
     for act in ObjectDate001_Actor.hero:
         act.Acgauge = random.randint(0, 50)
@@ -87,14 +91,14 @@ def draw(frame_time):
                                  (0, 216, 255))
         rssmgr.font[0].font.draw(Framework.Window_W / 4, Framework.Window_H / 7 - 30, '%d의 경험치를 획득하였습니다.' % (now_stage),
                                  (0, 216, 255))
-        rssmgr.font[0].font.draw(Framework.Window_W / 4, Framework.Window_H / 7 - 60, '마우스 좌클릭을 눌러주세요',
+        rssmgr.font[0].font.draw(Framework.Window_W / 4, Framework.Window_H / 7 - 60, '마우스 우클릭을 눌러주세요',
                                  (0, 216, 255))
     if (Sys_Battle.All_Die()):
         rssmgr.font[0].font.draw(Framework.Window_W / 4, Framework.Window_H / 7, '이런! 모든 영웅이 죽었습니다.',
                                  (0, 216, 255))
-        rssmgr.font[0].font.draw(Framework.Window_W / 4, Framework.Window_H / 7 - 30, '%d의 골드를 획득하였습니다.' % (now_stage * 3 * ((ObjectDate002_Monster.monster.maxhp - ObjectDate002_Monster.monster.hp) / ObjectDate002_Monster.monster.maxhp)),
+        rssmgr.font[0].font.draw(Framework.Window_W / 4, Framework.Window_H / 7 - 30, '%d의 골드를 획득하였습니다.' % (now_stage * 3 * (ObjectDate002_Monster.monster.maxhp - ObjectDate002_Monster.monster.hp / ObjectDate002_Monster.monster.maxhp)),
                                  (0, 216, 255))
-        rssmgr.font[0].font.draw(Framework.Window_W / 4, Framework.Window_H / 7 - 60, '마우스 좌클릭을 눌러주세요',
+        rssmgr.font[0].font.draw(Framework.Window_W / 4, Framework.Window_H / 7 - 60, '마우스 우클릭을 눌러주세요',
                                  (0, 216, 255))
 
     update_canvas()
@@ -111,18 +115,31 @@ def handle_events(frame_time):
             exit()
             Framework.quit()
 
-        elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
+        elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_RIGHT:
             x = event.x
             y = Framework.Window_H - event.y
             if (Sys_Battle.Floor_end()):
                 for act in ObjectDate001_Actor.hero:
                     act.exp += now_stage
+                Obj_Player.player.exp += now_stage
                 Resource.Money += now_stage * 5
                 now_stage += 1
                 Framework.change_state(Sc_Gacha)
             if (Sys_Battle.All_Die()):
-                Resource.Money += int(now_stage * 3 * ((ObjectDate002_Monster.monster.maxhp - ObjectDate002_Monster.monster.hp) / ObjectDate002_Monster.monster.maxhp))
+                Resource.Money += int(now_stage * 3 * (ObjectDate002_Monster.monster.maxhp - ObjectDate002_Monster.monster.hp / ObjectDate002_Monster.monster.maxhp))
                 Framework.change_state(Sc_Gacha)
+
+        elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
+            x = event.x
+            y = Framework.Window_H - event.y
+            if Sys_Battle.Inpoint(ObjectDate002_Monster.monster, x, y):
+                if (Obj_Player.player.level <= 2):
+                    Obj_Player.player.effect = Obj_Effect.Player_Effect(x, y, 4, Obj_Player.player.atk)
+                if (Obj_Player.player.level <= 4 and Obj_Player.player.level > 2):
+                    Obj_Player.player.effect = Obj_Effect.Player_Effect(x, y, 5, Obj_Player.player.atk)
+                if (Obj_Player.player.level >= 5):
+                    Obj_Player.player.effect = Obj_Effect.Player_Effect(x, y, 6, Obj_Player.player.atk)
+                ObjectDate002_Monster.monster.hp -= Obj_Player.player.atk
 
         elif event.type == SDL_KEYDOWN and event.key == SDLK_1:
             Framework.change_state(Sc_Gacha)

@@ -47,14 +47,13 @@ class Monster:
         self.y = FrameWork.Window_H / 2
 
     def get_bb(self):
-        if (self.position == 0):
-            return 250 - 32, FrameWork.Window_H / 2 - 64 - 32, 250 + 32, FrameWork.Window_H / 2 - 64 + 32
+        return 250 - 96, FrameWork.Window_H / 2 - 96, 250 + 98, FrameWork.Window_H / 2 + 96
 
     def draw(self):
         if (self.state == 0):
             if (self.effect != None):
                 self.effect.draw()
-            rssmgr.Monster[0].image.clip_draw(48 * int(self.frame) + ((48 * 3) * (self.kind % 4)), 240 - ((48 * 4) * int(self.kind / 4)), 48, 48, self.x, self.y, 196, 196)
+            rssmgr.Monster[0].image.clip_draw(48 * int(self.frame) + ((48 * 3) * (self.kind % 4)), 240 - ((48 * 4) * int(self.kind / 4)), 48, 48, self.x, self.y, 192, 192)
 
         if (self.state == 1):
-            rssmgr.Monster[1].image.clip_draw(48 * (self.kind % 4), 384 - (48 * int(self.frame)) - ((48 * 3) * int(self.kind / 4)), 48, 48, self.x, self.y, 196, 196)
+            rssmgr.Monster[1].image.clip_draw(48 * (self.kind % 4), 384 - (48 * int(self.frame)) - ((48 * 3) * int(self.kind / 4)), 48, 48, self.x, self.y, 192, 192)
