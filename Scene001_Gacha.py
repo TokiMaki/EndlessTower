@@ -33,10 +33,14 @@ def enter():
     game_world.add_object(background, 0)
     if Obj_Player.player is None:
         Obj_Player.player = Obj_Player.Player()
+    if rssmgr.Bgm.sound != rssmgr.battle_Bgm[2].sound:
+        rssmgr.Bgm.sound.stop()
+        rssmgr.Bgm.sound = rssmgr.battle_Bgm[2].sound
+        rssmgr.Bgm.sound.repeat_play()
 
 
 def exit():
-    pass
+    game_world.clear()
 
 
 def update(frame_time):

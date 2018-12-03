@@ -23,9 +23,14 @@ class Effect:
         self.FRAMES_PER_ACTION = 4  # 총 4장
 
         self.damege = Damege(self.x, self.y + 32, damege)
+        self.sound = False
+
 
     def update(self):
         if (self.frame < self.max_frame):
+            if self.sound == False:
+                rssmgr.Effect[self.effect_num].sound.play()
+                self.sound = True
             self.frame += self.ACTION_PER_TIME * self.FRAMES_PER_ACTION * Framework.frame_time
         if (self.max_frame - self.frame < 6):
             self.damege.update()
@@ -53,11 +58,16 @@ class Mon_Effect:
 
         self.damege = Damege(self.x, self.y + 32, damege)
 
+    def exit(self):
+        Obj_Monster.monster.effect.remove(self)
+
     def update(self):
         if (self.frame < self.max_frame):
             self.frame += self.ACTION_PER_TIME * self.FRAMES_PER_ACTION * Framework.frame_time
         if (self.max_frame - self.frame < 6):
             self.damege.update()
+        if (self.frame >= self.max_frame):
+            Mon_Effect.exit(self)
 
     def draw(self):
         if (self.frame > 0 and self.frame < self.max_frame):
@@ -78,6 +88,7 @@ class Player_Effect:
         self.FRAMES_PER_ACTION = 4  # 총 4장
 
         self.damege = Player_Damege(self.x, self.y + 32, damege)
+        rssmgr.Effect[self.effect_num].sound.play()
 
     def exit(self):
         Obj_Player.player.effect.remove(self)

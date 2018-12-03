@@ -24,6 +24,8 @@ def enter():
     rssmgr.Upload_data()
     background = Obj_Background.Background(3)
     game_world.add_object(background, 0)
+    rssmgr.Bgm.sound = rssmgr.battle_Bgm[3].sound
+    rssmgr.Bgm.sound.repeat_play()
 
 
 

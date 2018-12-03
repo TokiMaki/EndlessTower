@@ -12,8 +12,8 @@ sel = None
 x, y = 0, 0
 
 def enter():
-    for i in range(0, len(Obj_Actor.hero), 1):
-        game_world.add_object(Obj_Actor.hero[i], 0)
+    for act in Obj_Actor.hero:
+        game_world.add_object(act, 1)
 
     background = Obj_Background.Background(1)
     game_world.add_object(background, 0)
@@ -44,7 +44,7 @@ def draw(frame_time):
         for i in range(0 + space * 10, 0 + space * 10 + 10, 1):
             rssmgr.Actor[Obj_Actor.hero[i].actor_num].image.clip_draw(48 * int(Obj_Actor.hero[i].frame) + (48 * 3) * (Obj_Actor.hero[i].actor_in_num % 4),
                                                                       (48 * 7) - (48 * 4) * int((Obj_Actor.hero[i].actor_in_num / 4)), 48, 48,
-                                                                      Framework.Window_W / 8 * 6 + (Framework.Window_W / 8 * int((i - 10 * space)  % 2)), Framework.Window_H / 6 * 5 - (Framework.Window_H / 6 * int((i - 10 * space) / 2)))
+                                                                      Framework.Window_W / 8 * 6 + (Framework.Window_W / 8 * int((i - 10 * space) % 2)), Framework.Window_H / 6 * 5 - (Framework.Window_H / 6 * int((i - 10 * space) / 2)))
     else:
         for i in range(0 + space * 10, len(Obj_Actor.hero), 1):
             rssmgr.Actor[Obj_Actor.hero[i].actor_num].image.clip_draw(48 * int(Obj_Actor.hero[i].frame) + (48 * 3) * (Obj_Actor.hero[i].actor_in_num % 4),

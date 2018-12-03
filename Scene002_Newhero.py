@@ -93,8 +93,11 @@ def update(frame_time):
             gachahero.skill[1].updown_num = cleric_skill_list[random_temp][0]
             gachahero.skill[1].left_num = cleric_skill_list[random_temp][1]
         '''
+        if draw_num % 5 == 0:
+            rssmgr.gacha_background[0].sound.play()
         Obj_Actor.hero.append(gachahero)
         gachatemp.append(gachahero)
+
     frame += (framebool * Framework.frame_time)
     if (gacha_times > draw_num):
         draw_num = (draw_num + 1)

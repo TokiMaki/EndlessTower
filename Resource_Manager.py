@@ -8,14 +8,19 @@ Skill = None
 Skill_sel = None
 font = None
 battle_background = None
+battle_Bgm = None
 actor_maneger_background = None
 gacha_background = None
 Effect = None
 Logo_background = None
 
+Bgm = None
+
 def Upload_data():
     global Actor, Actor1, Monster, Skill, Skill_sel, font, battle_background, \
-        actor_maneger_background, Weapon, Effect, gacha_background, Logo_background
+        actor_maneger_background, Weapon, Effect, gacha_background, Logo_background, Bgm, battle_Bgm
+    if Bgm is None:
+        Bgm = Sound_data()
     if Actor is None:
         Actor = [Actor1_sound_data() for i in range(3)]
         Actor[0].image = load_image('Resource\\Actor\\Actor1.png')
@@ -59,32 +64,70 @@ def Upload_data():
         Weapon[1].image = load_image('Resource\\Actor\\Weapons2.png')
 
     if Effect is None:
-        Effect = [Effect_sound_data() for i in range(7)]
+        Effect = [Effect_sound_data() for i in range(8)]
         Effect[0].image = load_image('Resource\\Effect\\Hit1.png')
         Effect[0].max_frame = 4
+        Effect[0].sound = load_wav('Resource\\Sound\\Damage1.wav')
+        Effect[0].sound.set_volume(32)
+
         Effect[1].image = load_image('Resource\\Effect\\Meteor.png')
         Effect[1].max_frame = 25
+        Effect[1].sound = load_wav('Resource\\Sound\\Fire3.wav')
+        Effect[1].sound.set_volume(32)
+
         Effect[2].image = load_image('Resource\\Effect\\Ice5.png')
         Effect[2].max_frame = 30
+        Effect[2].sound = load_wav('Resource\\Sound\\Ice2.wav')
+        Effect[2].sound.set_volume(32)
+
         Effect[3].image = load_image('Resource\\Effect\\Thunder4.png')
         Effect[3].max_frame = 12
+        Effect[3].sound = load_wav('Resource\\Sound\\Thunder1.wav')
+        Effect[3].sound.set_volume(32)
+
         Effect[4].image = load_image('Resource\\Effect\\Claw.png')
         Effect[4].max_frame = 6
-        Effect[5].image = load_image('Resource\\Effect\\ClawSpecial1.png')
-        Effect[5].max_frame = 23
-        Effect[6].image = load_image('Resource\\Effect\\ClawSpecial2.png')
-        Effect[6].max_frame = 12
+        Effect[4].sound = load_wav('Resource\\Sound\\Damage3.wav')
+        Effect[4].sound.set_volume(32)
+
+        Effect[5].image = load_image('Resource\\Effect\\ClawSpecial2.png')
+        Effect[5].max_frame = 12
+        Effect[5].sound = load_wav('Resource\\Sound\\Damage3.wav')
+        Effect[5].sound.set_volume(32)
+
+        Effect[6].image = load_image('Resource\\Effect\\ClawSpecial1.png')
+        Effect[6].max_frame = 23
+        Effect[6].sound = load_wav('Resource\\Sound\\Damage3.wav')
+        Effect[6].sound.set_volume(32)
+
+        Effect[7].image = load_image('Resource\\Effect\\Boss_Effect.png')
+        Effect[7].max_frame = 5
+        Effect[7].sound = load_wav('Resource\\Sound\\Damage1.wav')
+        Effect[7].sound.set_volume(32)
+
 
     if Monster is None:
-        Monster = [Monster_sound_data() for i in range(2)]
+        Monster = [Monster_sound_data() for i in range(3)]
         Monster[0].image = load_image('Resource\\Monster\\Monster.png')
         Monster[1].image = load_image('Resource\\Monster\\Damage3.png')
+        Monster[2].image = load_image('Resource\\Monster\\Boss.jpg')
 
     if battle_background is None:
         battle_background = [image_data() for i in range(3)]
         battle_background[0].image = load_image('Resource\\background\\Cobblestones3.png')
+        battle_background[0].sound = load_music('Resource\\Sound\\Battle1.wav')
         battle_background[1].image = load_image('Resource\\background\\Cobblestones4.png')
+        battle_background[1].sound = load_music('Resource\\Sound\\Battle2.wav')
         battle_background[2].image = load_image('Resource\\background\\Cobblestones5.png')
+        battle_background[2].sound = load_music('Resource\\Sound\\Battle3.wav')
+
+    if battle_Bgm is None:
+        battle_Bgm = [Sound_data() for i in range(4)]
+        battle_Bgm[0].sound = load_music('Resource\\Sound\\Victory1.wav')
+        battle_Bgm[1].sound = load_music('Resource\\Sound\\Gameover1.wav')
+        battle_Bgm[2].sound = load_music('Resource\\Sound\\gacha.mp3')
+        battle_Bgm[3].sound = load_music('Resource\\Sound\\main.mp3')
+
 
     if actor_maneger_background is None:
         actor_maneger_background = [image_data() for i in range(2)]
@@ -95,6 +138,9 @@ def Upload_data():
         gacha_background = [image_data() for i in range(2)]
         gacha_background[0].image = load_image('Resource\\background\\Sky.png')
         gacha_background[1].image = load_image('Resource\\background\\Sky2.png')
+        gacha_background[0].sound = load_wav('Resource\\Sound\\gacha_sound.wav')
+        gacha_background[0].sound.set_volume(32)
+
 
     if Logo_background is None:
         Logo_background = [image_data() for i in range(2)]
@@ -120,6 +166,11 @@ def Upload_data():
 class image_data():
     def __init__(self):
         self.image = None
+        self.sound = None
+
+class Sound_data():
+    def __init__(self):
+        self.sound = None
 
 class Actor1_sound_data(image_data):
     def __init__(self):

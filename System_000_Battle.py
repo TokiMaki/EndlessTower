@@ -83,11 +83,20 @@ def ActorAction(Actor):
 
 def MonsterAction(Monster):
     global agro
-    while (True):
-        agro = random.randint(0, len(obj_Actor.hero) - 1)
-        if (obj_Actor.hero[agro].cur_state != obj_State.DeadState):
-            Monster.effect = obj_Effect.Mon_Effect(agro, 0, Monster.atk)
-            break
+    if (Monster.stage == 5):
+        for i in range(0, 5):
+            while (True):
+                agro = random.randint(0, len(obj_Actor.hero) - 1)
+                if (obj_Actor.hero[agro].cur_state != obj_State.DeadState):
+                    Monster.effect.append(obj_Effect.Mon_Effect(agro, 7, Monster.atk))
+                    break
+
+    else:
+        while (True):
+            agro = random.randint(0, len(obj_Actor.hero) - 1)
+            if (obj_Actor.hero[agro].cur_state != obj_State.DeadState):
+                Monster.effect.append(obj_Effect.Mon_Effect(agro, 0, Monster.atk))
+                break
     if (obj_Actor.hero[agro].cur_state != obj_State.DeadState):
         obj_Actor.hero[agro].hp -= Monster.atk
         print(str(agro) + "플레이어의 체력 : " + str(obj_Actor.hero[agro].hp))

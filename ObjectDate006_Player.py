@@ -29,8 +29,9 @@ class Player:
 
 
     def update(self, frame_time):
-        for i in range(0, len(self.effect)):
-            self.effect[i].update()
+        # for i in range(0, len(self.effect)):
+        for effect in self.effect:
+            effect.update()
         self.level_stat()
 
     def return_myturn(self):
@@ -44,5 +45,5 @@ class Player:
         self.y = random.randint(Project_SceneFrameWork.Window_H / 2 - 32 - 96, Project_SceneFrameWork.Window_H / 2 + 32 + 96)
 
     def draw(self):
-        for i in range(0, len(self.effect)):
-            self.effect[i].update()
+        for effect in self.effect:
+            effect.draw()
